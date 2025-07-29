@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Ventas - Distribuciones ROCA</title>
+  
+  <!-- Favicon y PWA -->
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  
+  <!-- CSS Modular iOS -->
+  <link href="../css/themes/variables.css" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/components/navigation.css" rel="stylesheet">
+  <link href="../css/components/cards.css" rel="stylesheet">
+  <link href="../css/components/buttons.css" rel="stylesheet">
+  <link href="../css/components/forms.css" rel="stylesheet">
+  <link href="../css/components/modals.css" rel="stylesheet">
+  <link href="../css/components/tables.css" rel="stylesheet">
+  <link href="../css/themes/animations.css" rel="stylesheet">
+  <link href="../css/ventas-module.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#007AFF">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ROCA Ventas">
+  
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+
+<body>
+  <!-- 🧭 Navigation Header -->
+  <nav class="main-navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <img src="../assets/images/logo.png" alt="ROCA" class="brand-logo">
+        <span class="brand-text">Distribuciones ROCA</span>
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="navbar-menu desktop-only">
+        <a href="../index.html" class="nav-link">
+          <i class="bi bi-house"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="productos.html" class="nav-link">
+          <i class="bi bi-box-seam"></i>
+          <span>Productos</span>
+        </a>
+        <a href="clientes.html" class="nav-link">
+          <i class="bi bi-people"></i>
+          <span>Clientes</span>
+        </a>
+        <a href="ventas.html" class="nav-link active">
+          <i class="bi bi-graph-up"></i>
+          <span>Ventas</span>
+        </a>
+        <a href="finanzas.html" class="nav-link">
+          <i class="bi bi-calculator"></i>
+          <span>Finanzas</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle mobile-only" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 📱 Mobile Sidebar UNIVERSAL -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <img src="../assets/images/logo.png" alt="ROCA" class="sidebar-logo">
+      <h3>Distribuciones ROCA</h3>
+      <button class="sidebar-close" id="closeSidebar">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <div class="sidebar-menu">
+      <a href="../index.html" class="sidebar-link">
+        <i class="bi bi-house"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="productos.html" class="sidebar-link">
+        <i class="bi bi-box-seam"></i>
+        <span>Productos</span>
+      </a>
+      <a href="clientes.html" class="sidebar-link">
+        <i class="bi bi-people"></i>
+        <span>Clientes</span>
+      </a>
+      <!-- Ventas con submenú -->
+      <a href="ventas.html" class="sidebar-link sidebar-link-ventas" id="sidebarVentasLink" tabindex="0">
+        <i class="bi bi-graph-up"></i>
+        <span>Ventas</span>
+        <button class="sidebar-submenu-toggle" id="ventasSubmenuToggle" aria-label="Mostrar submenú Ventas" tabindex="0">
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </a>
+      <div class="sidebar-submenu" id="ventasSubmenu">
+        <button class="sidebar-submenu-link" data-submodulo="registrar-venta">
+          <i class="bi bi-plus-circle"></i> Registrar Venta
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="facturas">
+          <i class="bi bi-receipt"></i> Facturas
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="reportes">
+          <i class="bi bi-bar-chart"></i> Reportes
+        </button>
+      </div>
+      <!-- Finanzas con submenú -->
+      <a href="finanzas.html" class="sidebar-link sidebar-link-finanzas" id="sidebarFinanzasLink" tabindex="0">
+        <i class="bi bi-calculator"></i>
+        <span>Finanzas</span>
+        <button class="sidebar-submenu-toggle" id="finanzasSubmenuToggle" aria-label="Mostrar submenú Finanzas" tabindex="0">
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </a>
+      <div class="sidebar-submenu" id="finanzasSubmenu">
+        <button class="sidebar-submenu-link" data-submodulo="analisis">
+          <i class="bi bi-graph-up-arrow"></i> Análisis
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="ganancias">
+          <i class="bi bi-cash-coin"></i> Ganancias
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="compras">
+          <i class="bi bi-bag-plus"></i> Compras
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="flujo-caja">
+          <i class="bi bi-cash-stack"></i> Flujo de Caja
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- 🎯 Page Header -->
+    <section class="dashboard-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="header-text">
+            <h1 class="dashboard-title">
+              <i class="bi bi-graph-up me-3"></i>
+              Centro de Ventas
+            </h1>
+            <p class="dashboard-subtitle">Gestiona ventas, facturas y estadísticas</p>
+          </div>
+          <div class="header-date">
+            <div class="date-card">
+              <i class="bi bi-calendar3"></i>
+              <span id="currentDate">Hoy</span>
+            </div>
+            <button id="btnVerHistorial" class="btn btn-outline-primary btn-sm mt-2">
+              <i class="bi bi-clock-history me-1"></i>
+              Ver Historial
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- 📊 Sales Statistics -->
+      <section class="quick-stats">
+        <div class="stats-grid">
+          <div class="stat-card sales-today">
+            <div class="stat-icon">
+              <i class="bi bi-calendar-day"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="ventasDiarias">$0</h3>
+              <p>Ventas Diarias</p>
+              <div id="ventasDiariasMetodos" class="stat-methods"></div>
+            </div>
+          </div>
+
+          <div class="stat-card products-total">
+            <div class="stat-icon">
+              <i class="bi bi-calendar-week"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="ventasSemanales">$0</h3>
+              <p>Ventas Semanales</p>
+              <div id="ventasSemanalesMetodos" class="stat-methods"></div>
+            </div>
+          </div>
+
+          <div class="stat-card clients-total">
+            <div class="stat-icon">
+              <i class="bi bi-calendar-month"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="ventasMensuales">$0</h3>
+              <p>Ventas Mensuales</p>
+              <div id="ventasMensualesMetodos" class="stat-methods"></div>
+            </div>
+          </div>
+
+          <div class="stat-card debts-total">
+            <div class="stat-icon">
+              <i class="bi bi-receipt"></i>
+            </div>
+            <div class="stat-content">
+              <h3 id="totalFacturas">0</h3>
+              <p>Facturas Generadas</p>
+              <button class="stat-action" id="viewFacturas">
+                <i class="bi bi-eye"></i>
+                Ver facturas
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ventas-submodulos-menu">
+        <div class="ventas-submodulos-grid">
+          <button class="ventas-submodulo-btn" data-submodulo="registrar-venta"><i class="bi bi-plus-circle"></i>Registrar Venta</button>
+          <button class="ventas-submodulo-btn" data-submodulo="facturas"><i class="bi bi-receipt"></i>Facturas</button>
+          <button class="ventas-submodulo-btn" data-submodulo="reportes"><i class="bi bi-bar-chart"></i>Reportes</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contenedores de submódulos -->
+    <div id="submodulo-registrar-venta" class="ventas-submodulo" style="display:none;">
+      <!-- Registrar Venta: formulario mejorado tipo wizard -->
+      <section class="content-card animate-fade-in-up">
+        <div class="card-header">
+          <h3>
+            <i class="bi bi-plus-circle"></i>
+            Nueva Venta
+          </h3>
+          <!-- Progress Bar -->
+          <div class="sale-progress">
+            <div class="progress-step active" data-step="1">
+              <div class="progress-icon">
+                <i class="bi bi-person"></i>
+              </div>
+              <span class="progress-label">Cliente</span>
+            </div>
+            <div class="progress-step" data-step="2">
+              <div class="progress-icon">
+                <i class="bi bi-box-seam"></i>
+              </div>
+              <span class="progress-label">Productos</span>
+            </div>
+            <div class="progress-step" data-step="3">
+              <div class="progress-icon">
+                <i class="bi bi-credit-card"></i>
+              </div>
+              <span class="progress-label">Pago</span>
+            </div>
+            <div class="progress-step" data-step="4">
+              <div class="progress-icon">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <span class="progress-label">Confirmar</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-content">
+          <form id="formVenta" class="form-wizard">
+            <!-- Step 1: Cliente y Tipo -->
+            <div class="wizard-step active" data-step="1">
+              <div class="step-header">
+                <h4><i class="bi bi-person me-2"></i>Información del Cliente</h4>
+                <p class="step-description">Selecciona el cliente y tipo de venta</p>
+              </div>
+              
+              <div class="step-content">
+                <div class="form-group mb-4">
+                  <label for="cliente" class="form-label required">Cliente</label>
+                  <div class="position-relative">
+                    <input type="text" id="cliente" class="form-control form-control-lg" required autocomplete="off" placeholder="Buscar cliente..." />
+                    <div id="cliente-sugerencias" class="list-group position-absolute w-100" style="z-index:1050; max-height: 150px; overflow-y: auto;"></div>
+                  </div>
+                </div>
+                
+                <div class="form-group mb-4">
+                  <label for="tipoCliente" class="form-label required">Tipo de Cliente</label>
+                  <div class="tipo-cliente-options">
+                    <label class="tipo-cliente-option">
+                      <input type="radio" name="tipoCliente" value="final" required>
+                      <div class="option-content">
+                        <i class="bi bi-person"></i>
+                        <div>
+                          <strong>Cliente Final</strong>
+                          <small>Precio normal</small>
+                        </div>
+                      </div>
+                    </label>
+                    <label class="tipo-cliente-option">
+                      <input type="radio" name="tipoCliente" value="distribuidor" required>
+                      <div class="option-content">
+                        <i class="bi bi-shop"></i>
+                        <div>
+                          <strong>Distribuidor</strong>
+                          <small>Precio especial</small>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="form-group mb-4">
+                  <label for="fechaVenta" class="form-label required">Fecha de Venta</label>
+                  <input type="date" id="fechaVenta" class="form-control form-control-lg" required />
+                </div>
+              </div>
+              
+              <div class="step-actions">
+                <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(2)">
+                  Continuar <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 2: Productos -->
+            <div class="wizard-step" data-step="2">
+              <div class="step-header">
+                <h4><i class="bi bi-box-seam me-2"></i>Productos</h4>
+                <p class="step-description">Agrega los productos a la venta</p>
+              </div>
+              
+              <div class="step-content">
+                <div class="products-section">
+                  <div class="section-header">
+                    <h5>Productos Seleccionados</h5>
+                    <button type="button" id="btnAnadirProducto" class="btn btn-outline-primary">
+                      <i class="bi bi-plus-circle"></i>
+                      Agregar Producto
+                    </button>
+                  </div>
+                  <div id="productos-container" class="products-container"></div>
+                </div>
+                
+                <div class="promotions-section">
+                  <div class="section-header">
+                    <h5><i class="bi bi-stars me-2"></i>Promociones Disponibles</h5>
+                  </div>
+                  <div id="contenedorPromociones" class="promotions-container"></div>
+                </div>
+              </div>
+              
+              <div class="step-actions">
+                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="prevStep(1)">
+                  <i class="bi bi-arrow-left me-2"></i> Anterior
+                </button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(3)">
+                  Continuar <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 3: Métodos de Pago -->
+            <div class="wizard-step" data-step="3">
+              <div class="step-header">
+                <h4><i class="bi bi-credit-card me-2"></i>Métodos de Pago</h4>
+                <p class="step-description">Configura los métodos de pago</p>
+              </div>
+              
+              <div class="step-content">
+                <div class="payment-section">
+                  <div class="section-header">
+                    <h5>Métodos de Pago</h5>
+                    <button type="button" id="btnAnadirPago" class="btn btn-outline-secondary">
+                      <i class="bi bi-plus"></i>
+                      Agregar Método
+                    </button>
+                  </div>
+                  <div class="form-help mb-3">
+                    <i class="bi bi-info-circle me-1"></i>
+                    Puede agregar múltiples métodos de pago. La suma debe coincidir con el total.
+                  </div>
+                  <div id="payment-methods-container" class="payment-methods-container"></div>
+                </div>
+                
+                <div class="total-preview">
+                  <div class="total-card">
+                    <div class="total-label">Total de la venta:</div>
+                    <div id="totalVenta" class="total-amount">$0</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="step-actions">
+                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="prevStep(2)">
+                  <i class="bi bi-arrow-left me-2"></i> Anterior
+                </button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="nextStep(4)">
+                  Continuar <i class="bi bi-arrow-right ms-2"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Step 4: Confirmación -->
+            <div class="wizard-step" data-step="4">
+              <div class="step-header">
+                <h4><i class="bi bi-check-circle me-2"></i>Confirmar Venta</h4>
+                <p class="step-description">Revisa los detalles antes de registrar</p>
+              </div>
+              
+              <div class="step-content">
+                <div class="confirmation-summary">
+                  <div class="summary-card">
+                    <h5><i class="bi bi-person me-2"></i>Cliente</h5>
+                    <div id="summaryCliente" class="summary-content">-</div>
+                  </div>
+                  
+                  <div class="summary-card">
+                    <h5><i class="bi bi-box-seam me-2"></i>Productos</h5>
+                    <div id="summaryProductos" class="summary-content">-</div>
+                  </div>
+                  
+                  <div class="summary-card">
+                    <h5><i class="bi bi-credit-card me-2"></i>Pago</h5>
+                    <div id="summaryPago" class="summary-content">-</div>
+                  </div>
+                  
+                  <div class="summary-card total">
+                    <h5><i class="bi bi-calculator me-2"></i>Total Final</h5>
+                    <div id="summaryTotal" class="summary-content">$0</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="step-actions">
+                <button type="button" class="btn btn-outline-secondary btn-lg" onclick="prevStep(3)">
+                  <i class="bi bi-arrow-left me-2"></i> Anterior
+                </button>
+                <button type="submit" class="btn btn-success btn-lg">
+                  <i class="bi bi-check-circle me-2"></i>
+                  Registrar Venta
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <div id="submodulo-facturas" class="ventas-submodulo" style="display:none;">
+      <!-- Facturas: sección de facturas mejorada -->
+      <section class="content-card animate-fade-in-up">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3>
+              <i class="bi bi-receipt-cutoff"></i>
+              Gestión de Facturas
+            </h3>
+            <div class="d-flex align-items-center gap-2">
+              <span class="table-badge info" id="contadorFacturas">0 facturas</span>
+              <button id="btnActualizarFacturas" class="btn btn-secondary btn-sm">
+                <i class="bi bi-arrow-clockwise"></i>
+                Actualizar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <!-- Estadísticas rápidas -->
+          <div class="facturas-stats mb-4">
+            <div class="row g-3">
+              <div class="col-md-3 col-6">
+                <div class="stat-mini-card">
+                  <div class="stat-mini-icon">
+                    <i class="bi bi-calendar-day"></i>
+                  </div>
+                  <div class="stat-mini-content">
+                    <h4 id="facturasHoy">0</h4>
+                    <p>Hoy</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stat-mini-card">
+                  <div class="stat-mini-icon">
+                    <i class="bi bi-calendar-week"></i>
+                  </div>
+                  <div class="stat-mini-content">
+                    <h4 id="facturasSemana">0</h4>
+                    <p>Esta Semana</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stat-mini-card">
+                  <div class="stat-mini-icon">
+                    <i class="bi bi-calendar-month"></i>
+                  </div>
+                  <div class="stat-mini-content">
+                    <h4 id="facturasMes">0</h4>
+                    <p>Este Mes</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-6">
+                <div class="stat-mini-card">
+                  <div class="stat-mini-icon">
+                    <i class="bi bi-currency-dollar"></i>
+                  </div>
+                  <div class="stat-mini-content">
+                    <h4 id="totalFacturasValor">$0</h4>
+                    <p>Valor Total</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenedor de facturas -->
+          <div id="facturasContainer" class="facturas-grid">
+            <!-- Las facturas se cargarán dinámicamente aquí -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="submodulo-reportes" class="ventas-submodulo" style="display:none;">
+      <!-- Reportes: sección de reportes de ventas -->
+      <section class="content-card animate-fade-in-up">
+        <div class="card-header">
+          <h3>
+            <i class="bi bi-bar-chart"></i>
+            Reportes de Ventas
+          </h3>
+        </div>
+        <div class="card-content">
+          <!-- Filtros avanzados de reportes -->
+          <div class="filters-section mb-4">
+            <div class="filters-header">
+              <h5><i class="bi bi-funnel me-2"></i>Filtros de Reporte</h5>
+              <button id="btnLimpiarFiltrosReportes" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle me-1"></i>
+                Limpiar
+              </button>
+            </div>
+            <div class="filters-grid">
+              <div class="filter-group">
+                <label for="tipoReporte" class="filter-label">
+                  <i class="bi bi-list-ul"></i>
+                  Tipo de Reporte
+                </label>
+                <select id="tipoReporte" class="form-control">
+                  <option value="rango">Por Rango de Fechas</option>
+                  <option value="dia">Por Día</option>
+                  <option value="semana">Por Semana</option>
+                  <option value="mes">Por Mes</option>
+                  <option value="anio">Por Año</option>
+                  <option value="producto">Por Producto</option>
+                  <option value="cliente">Por Cliente</option>
+                  <option value="metodo">Por Método de Pago</option>
+                  <option value="comparar">Comparar</option>
+                </select>
+              </div>
+              <!-- Filtros dinámicos -->
+              <div class="filter-group" id="filtroFechaContainer">
+                <label for="filtroFecha" class="filter-label">
+                  <i class="bi bi-calendar3"></i>
+                  Fecha
+                </label>
+                <input type="date" id="filtroFecha" class="form-control">
+              </div>
+              <div class="filter-group" id="filtroRangoContainer" style="display:none;">
+                <label class="filter-label">
+                  <i class="bi bi-calendar-range"></i>
+                  Rango de Fechas
+                </label>
+                <div class="d-flex gap-2">
+                  <input type="date" id="filtroFechaInicio" class="form-control" placeholder="Desde">
+                  <input type="date" id="filtroFechaFin" class="form-control" placeholder="Hasta">
+                </div>
+              </div>
+              <div class="filter-group" id="filtroMesContainer" style="display:none;">
+                <label for="filtroMes" class="filter-label">
+                  <i class="bi bi-calendar-month"></i>
+                  Mes
+                </label>
+                <select id="filtroMes" class="form-control">
+                  <option value="">Seleccione un mes</option>
+                  <option value="1">Enero</option>
+                  <option value="2">Febrero</option>
+                  <option value="3">Marzo</option>
+                  <option value="4">Abril</option>
+                  <option value="5">Mayo</option>
+                  <option value="6">Junio</option>
+                  <option value="7">Julio</option>
+                  <option value="8">Agosto</option>
+                  <option value="9">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+                </select>
+              </div>
+              <div class="filter-group" id="filtroAnioContainer" style="display:none;">
+                <label for="filtroAnio" class="filter-label">
+                  <i class="bi bi-calendar2-year"></i>
+                  Año
+                </label>
+                <input type="number" id="filtroAnio" class="form-control" min="2000" max="2100" step="1" placeholder="Año">
+              </div>
+              <div class="filter-group" id="filtroSemanaContainer" style="display:none;">
+                <label for="filtroSemana" class="filter-label">
+                  <i class="bi bi-calendar-week"></i>
+                  Semana (elige un día de la semana)
+                </label>
+                <input type="date" id="filtroSemana" class="form-control">
+              </div>
+              <div class="filter-group" id="filtroProductoContainer" style="display:none;">
+                <label for="filtroProductoReporte" class="filter-label">
+                  <i class="bi bi-box-seam"></i>
+                  Producto
+                </label>
+                <input type="text" id="filtroProductoReporte" class="form-control" placeholder="Buscar producto...">
+              </div>
+              <div class="filter-group" id="filtroClienteContainer" style="display:none;">
+                <label for="filtroClienteReporte" class="filter-label">
+                  <i class="bi bi-person"></i>
+                  Cliente
+                </label>
+                <input type="text" id="filtroClienteReporte" class="form-control" placeholder="Buscar cliente...">
+              </div>
+              <div class="filter-group" id="filtroMetodoPagoContainer" style="display:none;">
+                <label for="filtroMetodoPago" class="filter-label">
+                  <i class="bi bi-credit-card"></i>
+                  Método de Pago
+                </label>
+                <select id="filtroMetodoPago" class="form-control">
+                  <option value="">Todos</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Nequi">Nequi</option>
+                  <option value="Daviplata">Daviplata</option>
+                </select>
+              </div>
+              <!-- Filtros de comparación -->
+              <div class="filter-group" id="filtroCompararContainer" style="display:none;">
+                <label for="tipoComparacion" class="filter-label">
+                  <i class="bi bi-bar-chart-steps"></i>
+                  Comparar por
+                </label>
+                <select id="tipoComparacion" class="form-control">
+                  <option value="dias">Días</option>
+                  <option value="meses">Meses</option>
+                  <option value="anios">Años</option>
+                  <option value="productos">Productos</option>
+                  <option value="clientes">Clientes</option>
+                </select>
+                <div id="compararValoresContainer" class="mt-2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de exportación -->
+          <div class="d-flex gap-2 mb-3">
+            <button id="btnExportarPDF" class="btn btn-primary">
+              <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
+            </button>
+            <button id="btnExportarSheets" class="btn btn-success">
+              <i class="bi bi-file-earmark-spreadsheet"></i> Exportar Google Sheets
+            </button>
+          </div>
+
+          <!-- Resultados del reporte -->
+          <div id="tablaReportesContainer" class="mb-4"></div>
+
+          <!-- Comparación visual (gráfica) -->
+          <div id="graficaComparacionContainer" style="display:none;">
+            <div class="card mt-4">
+              <div class="card-header">
+                <i class="bi bi-graph-up-arrow"></i> Comparación Visual
+              </div>
+              <div class="card-body">
+                <canvas id="graficaComparacion" height="120"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Historial de Ventas (Oculto por defecto) -->
+  <div id="historialVentasContainer" class="historial-container" style="display: none;">
+    <div class="container">
+      <section class="content-card animate-fade-in-up">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h3>
+              <i class="bi bi-clock-history"></i>
+              Historial de Ventas
+            </h3>
+            <div class="d-flex align-items-center gap-2">
+              <span class="table-badge info" id="contadorVentas">0 ventas</span>
+              <button id="btnCerrarHistorial" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-lg"></i>
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="card-content">
+          <!-- Filtros -->
+          <div class="filters-section mb-4">
+            <div class="filters-header">
+              <h5><i class="bi bi-funnel me-2"></i>Filtros de Búsqueda</h5>
+              <button id="btnLimpiarFiltros" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-x-circle me-1"></i>
+                Limpiar
+              </button>
+            </div>
+            <div class="filters-grid">
+              <div class="filter-group">
+                <label for="filtroProducto" class="filter-label">
+                  <i class="bi bi-box-seam"></i>
+                  Producto
+                </label>
+                <input type="text" id="filtroProducto" class="form-control" placeholder="Buscar por producto...">
+              </div>
+              <div class="filter-group">
+                <label for="filtroCliente" class="filter-label">
+                  <i class="bi bi-person"></i>
+                  Cliente
+                </label>
+                <input type="text" id="filtroCliente" class="form-control" placeholder="Buscar por cliente...">
+              </div>
+              <div class="filter-group">
+                <label for="filtroFecha" class="filter-label">
+                  <i class="bi bi-calendar3"></i>
+                  Fecha
+                </label>
+                <input type="date" id="filtroFecha" class="form-control">
+              </div>
+              <div class="filter-group">
+                <label for="filtroFormaPago" class="filter-label">
+                  <i class="bi bi-credit-card"></i>
+                  Método de Pago
+                </label>
+                <select id="filtroFormaPago" class="form-control">
+                  <option value="">Todos los métodos</option>
+                  <option value="Efectivo">Efectivo</option>
+                  <option value="Nequi">Nequi</option>
+                  <option value="Daviplata">Daviplata</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Desktop Table -->
+          <div class="table-container desktop-only">
+            <table id="tablaVentas" class="table">
+              <thead>
+                <tr>
+                  <th>Cliente</th>
+                  <th>Productos</th>
+                  <th>Total</th>
+                  <th>Métodos de Pago</th>
+                  <th>Fecha</th>
+                  <th>Promociones</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          
+          <!-- Mobile Cards -->
+          <div id="ventasMobileContainer" class="mobile-only">
+          </div>
+          
+          <!-- Pagination -->
+          <nav class="mt-3">
+            <ul id="pagination" class="pagination justify-content-center">
+            </ul>
+          </nav>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- 📱 Bottom Navigation (Mobile) -->
+  <nav class="bottom-navigation mobile-only">
+    <a href="../index.html" class="bottom-nav-item">
+      <i class="bi bi-house"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="productos.html" class="bottom-nav-item">
+      <i class="bi bi-box-seam"></i>
+      <span>Productos</span>
+    </a>
+    <a href="ventas.html" class="bottom-nav-item active">
+      <i class="bi bi-graph-up"></i>
+      <span>Ventas</span>
+    </a>
+    <a href="clientes.html" class="bottom-nav-item">
+      <i class="bi bi-people"></i>
+      <span>Clientes</span>
+    </a>
+    <a href="finanzas.html" class="bottom-nav-item">
+      <i class="bi bi-calculator"></i>
+      <span>Finanzas</span>
+    </a>
+  </nav>
+
+  <!-- 🔄 Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Procesando venta...</p>
+    </div>
+  </div>
+
+  <!-- 🍞 Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Modules -->
+  <!-- Chart.js para gráficas -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module" src="../js/config/firebase.js"></script>
+  <script type="module" src="../js/components/navigation.js"></script>
+  <script type="module" src="../js/components/toast.js"></script>
+  <script type="module" src="../js/components/modal.js"></script>
+  <script type="module" src="../js/modules/ventas.js"></script>
+  <script type="module" src="../js/utils/formatters.js"></script>
+
+  <!-- Custom Styles for Ventas -->
+  <style>
+    .stat-methods {
+      font-size: var(--font-size-xs);
+      color: var(--ios-text-tertiary);
+      margin-top: var(--space-xs);
+      line-height: 1.3;
+    }
+
+    .products-container, .payment-methods-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .producto-item, .payment-method-item {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+      padding: var(--space-md);
+      background: var(--ios-fill-quaternary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--ios-separator);
+    }
+
+    .promotions-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+      background: var(--ios-fill-quaternary);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--ios-separator);
+    }
+
+    .sale-total-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-3xl);
+      padding: var(--space-2xl);
+      background: var(--ios-fill-quaternary);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--ios-separator);
+    }
+
+    .total-display h4 {
+      margin: 0;
+      color: var(--ios-text-primary);
+      font-size: var(--font-size-lg);
+    }
+
+    .total-amount {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--ios-blue);
+    }
+
+    .facturas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .factura-card {
+      background: var(--ios-bg-elevated);
+      border: 1px solid var(--ios-separator);
+      border-radius: var(--radius-xl);
+      padding: var(--space-lg);
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .factura-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .factura-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+    }
+
+    .factura-id {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--ios-blue);
+    }
+
+    .factura-date {
+      font-size: var(--font-size-xs);
+      color: var(--ios-text-secondary);
+    }
+
+    .factura-content {
+      margin-bottom: var(--space-lg);
+    }
+
+    .factura-cliente {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-medium);
+      color: var(--ios-text-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .factura-total {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--ios-green);
+    }
+
+    .factura-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .factura-action-btn {
+      flex: 1;
+      padding: var(--space-sm);
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+    }
+
+    .factura-action-btn.view {
+      background: var(--ios-blue);
+      color: white;
+    }
+
+    .factura-action-btn.download {
+      background: var(--ios-green);
+      color: white;
+    }
+
+    .factura-action-btn.delete {
+      background: var(--ios-red);
+      color: white;
+    }
+
+    .factura-action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 768px) {
+      .sale-total-section {
+        flex-direction: column;
+        gap: var(--space-lg);
+        text-align: center;
+      }
+
+      .producto-item, .payment-method-item {
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+
+      .facturas-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-fab-volver {
+      position: fixed;
+      bottom: 90px;
+      right: 18px;
+      z-index: 1200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ios-blue);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,122,255,0.18);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: none;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+    .btn-fab-volver:active {
+      background: var(--ios-blue-dark);
+      transform: scale(0.96);
+    }
+    
+    .btn-fab-volver-paso {
+      position: fixed;
+      bottom: 90px;
+      left: 18px;
+      z-index: 1200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ios-secondary);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(142,142,147,0.18);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: none;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+    .btn-fab-volver-paso:active {
+      background: var(--ios-secondary-dark);
+      transform: scale(0.96);
+    }
+    
+    @media (max-width: 700px) {
+      .btn-fab-volver {
+        display: flex;
+      }
+      .btn-fab-volver-paso {
+        display: flex;
+      }
+    }
+
+    /* Estilos para el historial de ventas */
+    .historial-container {
+      animation: fadeInUp 0.3s ease-out;
+      min-height: 100vh;
+      background: var(--ios-bg-primary);
+      padding-top: var(--space-xl);
+    }
+
+    .filters-section {
+      background: var(--ios-fill-quaternary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      border: 1px solid var(--ios-separator);
+      margin-bottom: var(--space-xl);
+    }
+
+    .header-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .header-date .btn {
+      min-width: 140px;
+      transition: all var(--transition-fast);
+    }
+
+    .header-date .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 768px) {
+      .filters-section .row {
+        flex-direction: column;
+      }
+      
+      .filters-section .col-md-3,
+      .filters-section .col-md-2 {
+        width: 100%;
+      }
+      
+      .historial-container {
+        padding-top: var(--space-lg);
+      }
+    }
+  </style>
+
+  <!-- Date initialization -->
+  <script>
+    document.getElementById('currentDate').textContent = 
+      new Date().toLocaleDateString('es-ES', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+  </script>
+  <script>
+    function volverAtras() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '../index.html';
+      }
+    }
+    
+    function volverPasoAnterior() {
+      if (typeof prevStep === 'function' && typeof currentWizardStep !== 'undefined') {
+        prevStep(currentWizardStep - 1);
+      }
+    }
+  </script>
+  <!-- Botón Volver Flotante (siempre visible en móvil) -->
+  <button id="btnFabVolver" class="btn-fab-volver" onclick="volverAtras()" title="Volver">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+  
+  <!-- Botón Volver Paso Anterior (solo en wizard) -->
+  <button id="btnFabVolverPaso" class="btn-fab-volver-paso" onclick="volverPasoAnterior()" title="Paso anterior" style="display:none;">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+</body>
+</html>

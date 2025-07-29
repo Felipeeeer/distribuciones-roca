@@ -1,0 +1,200 @@
+/**
+ * 🔊 Sound Control Styles - Distribuciones ROCA
+ * Estilos para el control de sonido en sidebar y navegación
+ */
+
+/* Estilos para el sidebar móvil */
+.sidebar-sound-control {
+  margin: 1rem;
+  padding: 0.75rem;
+  background: var(--ios-fill-quaternary, #f2f2f7);
+  border-radius: 12px;
+  border: 1px solid var(--ios-separator, #c6c6c8);
+}
+
+.sound-control-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sound-control-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.sound-icon {
+  font-size: 1.1em;
+  color: var(--ios-blue, #007AFF);
+  width: 20px;
+  text-align: center;
+}
+
+.sound-text {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--ios-text-secondary, #3c3c43);
+  line-height: 1.2;
+}
+
+.sound-toggle-btn {
+  background: none;
+  border: none;
+  padding: 0.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.sound-toggle-btn:hover {
+  background: var(--ios-fill-tertiary, #e5e5ea);
+}
+
+.sound-toggle-btn:active {
+  transform: scale(0.95);
+}
+
+.sound-toggle-btn i {
+  font-size: 1.2em;
+  transition: all 0.2s ease;
+}
+
+.sound-toggle-btn.enabled i {
+  color: var(--ios-green, #34c759);
+}
+
+.sound-toggle-btn.disabled i {
+  color: var(--ios-red, #ff3b30);
+}
+
+.sound-toggle-btn.enabled .bi-toggle-on {
+  display: inline;
+}
+
+.sound-toggle-btn.enabled .bi-toggle-off {
+  display: none;
+}
+
+.sound-toggle-btn.disabled .bi-toggle-on {
+  display: none;
+}
+
+.sound-toggle-btn.disabled .bi-toggle-off {
+  display: inline;
+}
+
+/* Estilos para la barra de navegación de escritorio */
+.desktop-sound-control {
+  display: flex;
+  align-items: center;
+}
+
+.nav-sound-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-lg, 8px);
+  color: var(--ios-text-secondary, #3c3c43);
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-sound-toggle:hover {
+  background-color: var(--ios-fill-quaternary, #f2f2f7);
+  color: var(--ios-text-primary, #000000);
+  transform: translateY(-1px);
+}
+
+.nav-sound-toggle.enabled {
+  color: var(--ios-green, #34c759);
+}
+
+.nav-sound-toggle.disabled {
+  color: var(--ios-red, #ff3b30);
+}
+
+.nav-sound-toggle.changing {
+  animation: pulse 0.3s ease;
+}
+
+/* Animación de cambio de estado */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar-sound-control {
+    margin: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .sound-text {
+    font-size: 0.85em;
+  }
+
+  .sound-icon {
+    font-size: 1em;
+  }
+
+  .desktop-sound-control {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-sound-control {
+    display: none;
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.sound-toggle-btn:focus,
+.nav-sound-toggle:focus {
+  outline: 2px solid var(--ios-blue, #007AFF);
+  outline-offset: 2px;
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+  .sidebar-sound-control {
+    border: 2px solid var(--ios-text-primary, #000000);
+  }
+  
+  .sound-toggle-btn.enabled i {
+    color: var(--ios-text-primary, #000000);
+  }
+  
+  .sound-toggle-btn.disabled i {
+    color: var(--ios-text-primary, #000000);
+  }
+}
+
+/* Modo de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .sound-toggle-btn,
+  .nav-sound-toggle {
+    transition: none;
+  }
+  
+  .sound-toggle-btn.changing,
+  .nav-sound-toggle.changing {
+    animation: none;
+  }
+} 

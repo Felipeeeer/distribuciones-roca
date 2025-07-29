@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Historial del Cliente</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f5f5f5;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin: 0;
+    }
+    
+    .cliente-info {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #666;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 18px;
+      color: #666;
+    }
+    
+    .error {
+      text-align: center;
+      padding: 40px;
+      color: #e74c3c;
+      background: white;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    
+    .no-historial {
+      text-align: center;
+      padding: 40px;
+      color: #666;
+      background: white;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    
+    .factura {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    
+    .factura:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+    
+    .factura-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+    
+    .factura-numero {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .factura-fecha {
+      font-size: 14px;
+      color: #7f8c8d;
+    }
+    
+    .factura-total {
+      font-size: 20px;
+      font-weight: bold;
+      color: #27ae60;
+    }
+    
+    .productos-lista {
+      margin-top: 15px;
+    }
+    
+    .producto-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .producto-item:last-child {
+      border-bottom: none;
+    }
+    
+    .producto-nombre {
+      flex: 1;
+      font-weight: 500;
+    }
+    
+    .producto-cantidad {
+      margin: 0 15px;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .producto-precio {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .estadisticas {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      text-align: center;
+    }
+    
+    .stat-item {
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      
+      .factura-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      
+      .producto-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Historial de Compras</h1>
+    <div class="cliente-info" id="clienteInfo">Cargando información del cliente...</div>
+  </div>
+
+  <div id="estadisticas" class="estadisticas" style="display: none;">
+    <h3 style="margin-top: 0; text-align: center; color: #2c3e50;">Resumen de Compras</h3>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-value" id="totalFacturas">0</div>
+        <div class="stat-label">Total Facturas</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="totalGastado">$0</div>
+        <div class="stat-label">Total Gastado</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="promedioCompra">$0</div>
+        <div class="stat-label">Promedio por Compra</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="ultimaCompra">-</div>
+        <div class="stat-label">Última Compra</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading" class="loading">
+    Cargando historial de compras...
+  </div>
+
+  <div id="error" class="error" style="display: none;">
+    <h3>Error al cargar el historial</h3>
+    <p id="errorMessage">No se pudo cargar la información del cliente.</p>
+  </div>
+
+  <div id="noHistorial" class="no-historial" style="display: none;">
+    <h3>Sin historial</h3>
+    <p>Este cliente aún no tiene compras registradas.</p>
+  </div>
+
+  <div id="historial"></div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+  <script type="module" src="../js/config/firebase.js"></script>
+  <script type="module" src="../js/modules/historial-cliente.js"></script>
+</body>
+</html>

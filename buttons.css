@@ -1,0 +1,577 @@
+/* 🔘 Buttons Component - iOS Design System */
+
+/* 🎯 Base Button Styles */
+.btn, .btn-ios, .btn-clear-filters {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0,122,255,0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+  border: none;
+  font-family: var(--font-family-system);
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  outline: none;
+  min-height: 44px;
+  min-width: 44px;
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus, .btn-ios:focus, .btn-clear-filters:focus {
+  outline: 2.5px solid var(--ios-blue);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,122,255,0.13);
+}
+
+.btn:disabled, .btn-ios:disabled, .btn-clear-filters:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 🎨 Button Variants */
+
+/* Primary Button */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--ios-blue);
+  color: white;
+}
+
+.btn-primary:active {
+  background: var(--ios-blue-dark);
+  color: white;
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: var(--ios-fill-quaternary);
+  color: var(--ios-blue);
+  border: 1.5px solid var(--ios-blue-light);
+}
+
+.btn-secondary:hover, .btn-secondary:focus {
+  background: var(--ios-blue-light);
+  color: white;
+  border-color: var(--ios-blue);
+}
+
+.btn-secondary:active {
+  background: var(--ios-blue);
+  color: white;
+  border-color: var(--ios-blue-dark);
+}
+
+/* Success Button */
+.btn-success {
+  background: var(--gradient-success);
+  color: white;
+  box-shadow: 0 4px 12px rgba(52, 199, 89, 0.3);
+}
+
+.btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 199, 89, 0.4);
+}
+
+.btn-success:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(52, 199, 89, 0.3);
+}
+
+/* Warning Button */
+.btn-warning {
+  background: var(--gradient-warning);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3);
+}
+
+.btn-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 149, 0, 0.4);
+}
+
+.btn-warning:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 149, 0, 0.3);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: var(--gradient-danger);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 59, 48, 0.3);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 59, 48, 0.4);
+}
+
+.btn-danger:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 59, 48, 0.3);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  background: transparent;
+  color: var(--ios-blue);
+  box-shadow: none;
+}
+
+.btn-ghost:hover {
+  background: var(--ios-fill-quaternary);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  background: var(--ios-fill-tertiary);
+  transform: translateY(0);
+}
+
+/* Outline Button */
+.btn-outline {
+  background: transparent;
+  color: var(--ios-blue);
+  border: 2px solid var(--ios-blue);
+  box-shadow: none;
+}
+
+.btn-outline:hover {
+  background: var(--ios-blue);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.btn-outline:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+/* 📏 Button Sizes */
+.btn-xs {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: var(--font-size-xs);
+  border-radius: var(--radius-md);
+  gap: var(--space-xs);
+}
+
+.btn-sm {
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+  gap: var(--space-xs);
+}
+
+.btn-lg {
+  padding: var(--space-lg) var(--space-2xl);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-xl);
+  gap: var(--space-md);
+}
+
+.btn-xl {
+  padding: var(--space-xl) var(--space-3xl);
+  font-size: var(--font-size-xl);
+  border-radius: var(--radius-2xl);
+  gap: var(--space-md);
+}
+
+/* 🎪 Special Button Types */
+
+/* Floating Action Button */
+.btn-fab {
+  position: fixed;
+  bottom: var(--space-2xl);
+  right: var(--space-2xl);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 8px 24px rgba(0, 122, 255, 0.3);
+  z-index: var(--z-fixed);
+  padding: 0;
+  font-size: var(--font-size-xl);
+}
+
+.btn-fab:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 32px rgba(0, 122, 255, 0.4);
+}
+
+.btn-fab:active {
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .btn-fab {
+    bottom: calc(var(--space-2xl) + var(--safe-area-bottom, 0px));
+    right: var(--space-lg);
+  }
+}
+
+/* Icon Button */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: var(--radius-lg);
+  background: var(--ios-fill-quaternary);
+  color: var(--ios-text-secondary);
+  box-shadow: none;
+}
+
+.btn-icon:hover {
+  background: var(--ios-fill-tertiary);
+  color: var(--ios-text-primary);
+  transform: translateY(-1px);
+}
+
+.btn-icon:active {
+  background: var(--ios-fill-secondary);
+  transform: translateY(0);
+}
+
+.btn-icon.large {
+  width: 48px;
+  height: 48px;
+  font-size: var(--font-size-lg);
+}
+
+.btn-icon.small {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-md);
+}
+
+/* Toggle Button */
+.btn-toggle {
+  background: var(--ios-fill-quaternary);
+  color: var(--ios-text-secondary);
+  box-shadow: none;
+}
+
+.btn-toggle.active {
+  background: var(--ios-blue);
+  color: white;
+}
+
+.btn-toggle:hover:not(.active) {
+  background: var(--ios-fill-tertiary);
+}
+
+/* Loading Button */
+.btn-loading {
+  pointer-events: none;
+  position: relative;
+}
+
+.btn-loading::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: button-spin 1s linear infinite;
+}
+
+.btn-loading .btn-text {
+  opacity: 0;
+}
+
+@keyframes button-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 🎭 Button Groups */
+.btn-group {
+  display: inline-flex;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-group .btn {
+  border-radius: 0;
+  border-right: 1px solid var(--ios-separator);
+  box-shadow: none;
+}
+
+.btn-group .btn:first-child {
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.btn-group .btn:last-child {
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  border-right: none;
+}
+
+.btn-group .btn:only-child {
+  border-radius: var(--radius-lg);
+  border-right: none;
+}
+
+/* Vertical Button Group */
+.btn-group-vertical {
+  flex-direction: column;
+}
+
+.btn-group-vertical .btn {
+  border-right: none;
+  border-bottom: 1px solid var(--ios-separator);
+}
+
+.btn-group-vertical .btn:first-child {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.btn-group-vertical .btn:last-child {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  border-bottom: none;
+}
+
+/* 🎨 Button with Badge */
+.btn-badge {
+  position: relative;
+}
+
+.btn-badge::after {
+  content: attr(data-badge);
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--ios-red);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  min-width: 16px;
+  text-align: center;
+  line-height: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-badge[data-badge="0"]::after,
+.btn-badge[data-badge=""]::after {
+  display: none;
+}
+
+/* 🌐 Link Buttons */
+.btn-link {
+  background: none;
+  color: var(--ios-blue);
+  text-decoration: underline;
+  box-shadow: none;
+  padding: var(--space-sm);
+}
+
+.btn-link:hover {
+  color: var(--ios-blue-dark);
+  background: var(--ios-fill-quaternary);
+  text-decoration: none;
+  transform: none;
+}
+
+/* 📱 Mobile Optimizations */
+@media (max-width: 768px) {
+  .btn, .btn-ios, .btn-clear-filters {
+    width: 100%;
+    min-width: 0;
+    font-size: 1.08rem;
+    padding: 1.1rem 0.5rem;
+  }
+  
+  .btn-sm {
+    min-height: 38px;
+  }
+  
+  .btn-lg {
+    min-height: 52px;
+  }
+  
+  .btn-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn-group .btn {
+    border-radius: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--ios-separator);
+  }
+  
+  .btn-group .btn:first-child {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  
+  .btn-group .btn:last-child {
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-bottom: none;
+  }
+}
+
+/* 🎭 Touch Feedback */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* 🎨 Gradient Animation */
+.btn-animated {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ♿ High Contrast Mode */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+  
+  .btn-ghost,
+  .btn-link {
+    border: 2px solid var(--ios-blue);
+  }
+}
+
+/* 🌙 Dark Mode Optimizations */
+@media (prefers-color-scheme: dark) {
+  .btn-secondary {
+    background: var(--ios-fill-secondary);
+    border-color: var(--ios-separator);
+  }
+  
+  .btn-icon {
+    background: var(--ios-fill-secondary);
+  }
+}
+
+/* 🎯 Utility Classes */
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+.btn-rounded {
+  border-radius: var(--radius-full);
+}
+
+.btn-square {
+  border-radius: var(--radius-sm);
+}
+
+.btn-shadow-none {
+  box-shadow: none !important;
+}
+
+.btn-shadow-lg {
+  box-shadow: var(--shadow-lg) !important;
+}
+
+/* 🔄 Loading State Variants */
+.btn-loading-dots::before {
+  content: '●●●';
+  animation: loading-dots 1.4s infinite;
+  letter-spacing: 2px;
+}
+
+@keyframes loading-dots {
+  0%, 20% { color: currentColor; }
+  25%, 45% { color: transparent; }
+  50%, 70% { color: currentColor; }
+  75%, 95% { color: transparent; }
+  100% { color: currentColor; }
+}
+
+/* 🎪 Special Effects */
+.btn-glow {
+  box-shadow: 0 0 20px var(--ios-blue);
+}
+
+.btn-pulse {
+  animation: btn-pulse 2s infinite;
+}
+
+@keyframes btn-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 8px rgba(0, 122, 255, 0);
+  }
+}
+
+/* --- MEJORAS iOS BUTTONS --- */
+.btn-ios, .btn-clear-filters {
+  background: var(--ios-fill-quaternary);
+  color: var(--ios-blue);
+  border: 1.5px solid var(--ios-blue-light);
+  font-weight: 600;
+}
+
+.btn-clear-filters:hover, .btn-clear-filters:focus {
+  background: var(--ios-blue-light);
+  color: white;
+  border-color: var(--ios-blue);
+}
+
+.btn-clear-filters:active {
+  background: var(--ios-blue);
+  color: white;
+  border-color: var(--ios-blue-dark);
+}
+
+@media (max-width: 700px) {
+  .btn, .btn-ios, .btn-clear-filters {
+    width: 100%;
+    min-width: 0;
+    font-size: 1.08rem;
+    padding: 1.1rem 0.5rem;
+  }
+}

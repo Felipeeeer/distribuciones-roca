@@ -1,0 +1,242 @@
+/* 🎨 iOS Design System Variables */
+
+:root {
+  /* 🎯 Primary Colors */
+  --ios-blue: #007AFF;
+  --ios-blue-light: #5AC8FA;
+  --ios-blue-dark: #0051D0;
+  
+  --ios-green: #34C759;
+  --ios-green-light: #63DA6B;
+  --ios-green-dark: #248A3D;
+  
+  --ios-red: #FF3B30;
+  --ios-red-light: #FF6961;
+  --ios-red-dark: #D70015;
+  
+  --ios-orange: #FF9500;
+  --ios-orange-light: #FFB340;
+  --ios-orange-dark: #C75C00;
+  
+  --ios-purple: #AF52DE;
+  --ios-purple-light: #DA8FFF;
+  --ios-purple-dark: #8E2DE2;
+  
+  --ios-yellow: #FFCC02;
+  --ios-yellow-light: #FFD60A;
+  --ios-yellow-dark: #F2A900;
+  
+  --ios-pink: #FF2D92;
+  --ios-pink-light: #FF6AC1;
+  --ios-pink-dark: #D60072;
+  
+  --ios-teal: #30B0C7;
+  --ios-teal-light: #64D2FF;
+  --ios-teal-dark: #006BA6;
+  
+  /* 🌫️ Neutral Colors */
+  --ios-gray: #8E8E93;
+  --ios-gray-light: #C7C7CC;
+  --ios-gray-dark: #48484A;
+  
+  /* 🔳 Background Colors */
+  --ios-bg-primary: #F2F2F7;
+  --ios-bg-secondary: #FFFFFF;
+  --ios-bg-tertiary: #F2F2F7;
+  --ios-bg-quaternary: #EBEBF0;
+  --ios-bg-elevated: #FFFFFF;
+  
+  /* 📝 Text Colors */
+  --ios-text-primary: #000000;
+  --ios-text-secondary: #3C3C43;
+  --ios-text-tertiary: #3C3C4399;
+  --ios-text-quaternary: #3C3C432E;
+  --ios-text-placeholder: #3C3C434D;
+  
+  /* 📏 Separators */
+  --ios-separator: #C6C6C8;
+  --ios-separator-opaque: #C6C6C8;
+  --ios-separator-non-opaque: #3C3C432E;
+  
+  /* 🔲 System Fill Colors */
+  --ios-fill-primary: #78788033;
+  --ios-fill-secondary: #78788028;
+  --ios-fill-tertiary: #7676801E;
+  --ios-fill-quaternary: #74748014;
+  
+  /* 🌟 Accent Colors */
+  --ios-accent-primary: var(--ios-blue);
+  --ios-accent-secondary: var(--ios-green);
+  --ios-accent-tertiary: var(--ios-orange);
+  
+  /* 📐 Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-2xl: 24px;
+  --space-3xl: 32px;
+  --space-4xl: 40px;
+  --space-5xl: 48px;
+  --space-6xl: 64px;
+  
+  /* 📏 Border Radius */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+  
+  /* 🎭 Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+  --shadow-2xl: 0 16px 32px rgba(0, 0, 0, 0.25);
+  
+  /* 💨 Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-normal: 0.25s ease-out;
+  --transition-slow: 0.4s ease-out;
+  
+  /* 🎯 Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+  
+  /* 📱 Breakpoints */
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+  --bp-2xl: 1400px;
+  
+  /* 🎨 Gradient Backgrounds */
+  --gradient-primary: linear-gradient(135deg, var(--ios-blue), var(--ios-blue-light));
+  --gradient-success: linear-gradient(135deg, var(--ios-green), var(--ios-green-light));
+  --gradient-warning: linear-gradient(135deg, var(--ios-orange), var(--ios-yellow));
+  --gradient-danger: linear-gradient(135deg, var(--ios-red), var(--ios-pink));
+  --gradient-purple: linear-gradient(135deg, var(--ios-purple), var(--ios-pink));
+  --gradient-teal: linear-gradient(135deg, var(--ios-teal), var(--ios-blue-light));
+  
+  /* 📖 Typography Scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  
+  /* 📏 Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* 🔤 Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* 🌐 System Fonts */
+  --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: "SF Mono", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
+}
+
+/* 🌙 Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* 🔳 Dark Background Colors */
+    --ios-bg-primary: #000000;
+    --ios-bg-secondary: #1C1C1E;
+    --ios-bg-tertiary: #2C2C2E;
+    --ios-bg-quaternary: #3A3A3C;
+    --ios-bg-elevated: #1C1C1E;
+    
+    /* 📝 Dark Text Colors */
+    --ios-text-primary: #FFFFFF;
+    --ios-text-secondary: #EBEBF5;
+    --ios-text-tertiary: #EBEBF599;
+    --ios-text-quaternary: #EBEBF52E;
+    --ios-text-placeholder: #EBEBF54D;
+    
+    /* 📏 Dark Separators */
+    --ios-separator: #38383A;
+    --ios-separator-opaque: #38383A;
+    --ios-separator-non-opaque: #54545833;
+    
+    /* 🔲 Dark System Fill Colors */
+    --ios-fill-primary: #7878805B;
+    --ios-fill-secondary: #78788052;
+    --ios-fill-tertiary: #7676803D;
+    --ios-fill-quaternary: #74748029;
+    
+    /* 🎭 Dark Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
+    --shadow-2xl: 0 16px 32px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* 🎯 Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0s;
+    --transition-normal: 0s;
+    --transition-slow: 0s;
+  }
+}
+
+/* 📱 Safe Area Support */
+@supports (padding: env(safe-area-inset-bottom)) {
+  :root {
+    --safe-area-top: env(safe-area-inset-top);
+    --safe-area-right: env(safe-area-inset-right);
+    --safe-area-bottom: env(safe-area-inset-bottom);
+    --safe-area-left: env(safe-area-inset-left);
+  }
+}
+
+/* 💯 High Contrast Support */
+@media (prefers-contrast: high) {
+  :root {
+    --ios-separator: #000000;
+    --ios-text-secondary: var(--ios-text-primary);
+  }
+}
+
+/* 🔍 Custom Properties Utilities */
+.ios-blue { color: var(--ios-blue); }
+.ios-green { color: var(--ios-green); }
+.ios-red { color: var(--ios-red); }
+.ios-orange { color: var(--ios-orange); }
+.ios-purple { color: var(--ios-purple); }
+.ios-yellow { color: var(--ios-yellow); }
+.ios-pink { color: var(--ios-pink); }
+.ios-teal { color: var(--ios-teal); }
+.ios-gray { color: var(--ios-gray); }
+
+.bg-ios-blue { background-color: var(--ios-blue); }
+.bg-ios-green { background-color: var(--ios-green); }
+.bg-ios-red { background-color: var(--ios-red); }
+.bg-ios-orange { background-color: var(--ios-orange); }
+.bg-ios-purple { background-color: var(--ios-purple); }
+.bg-ios-yellow { background-color: var(--ios-yellow); }
+.bg-ios-pink { background-color: var(--ios-pink); }
+.bg-ios-teal { background-color: var(--ios-teal); }

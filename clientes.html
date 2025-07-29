@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Clientes - Distribuciones ROCA</title>
+  
+  <!-- Favicon y PWA -->
+  <link rel="icon" type="image/png" href="../assets/images/logo.png">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  
+  <!-- CSS Modular iOS -->
+  <link href="../css/themes/variables.css" rel="stylesheet">
+  <link href="../css/main.css" rel="stylesheet">
+  <link href="../css/components/navigation.css" rel="stylesheet">
+  <link href="../css/components/cards.css" rel="stylesheet">
+  <link href="../css/components/forms.css" rel="stylesheet">
+  <link href="../css/components/buttons.css" rel="stylesheet">
+  <link href="../css/components/tables.css" rel="stylesheet">
+  <link href="../css/components/sound-control.css" rel="stylesheet">
+  <link href="../css/themes/animations.css" rel="stylesheet">
+  <link href="../css/clientes-module.css" rel="stylesheet">
+  
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#007AFF">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="ROCA">
+</head>
+
+<body>
+  <!-- 🧭 Navigation Header -->
+  <nav class="main-navbar">
+    <div class="navbar-container">
+      <div class="navbar-brand">
+        <img src="../assets/images/logo.png" alt="ROCA" class="brand-logo">
+        <span class="brand-text">Distribuciones ROCA</span>
+      </div>
+      
+      <!-- Desktop Menu -->
+      <div class="navbar-menu desktop-only">
+        <a href="../index.html" class="nav-link">
+          <i class="bi bi-house"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="productos.html" class="nav-link">
+          <i class="bi bi-box-seam"></i>
+          <span>Productos</span>
+        </a>
+        <a href="clientes.html" class="nav-link active">
+          <i class="bi bi-people"></i>
+          <span>Clientes</span>
+        </a>
+        <a href="ventas.html" class="nav-link">
+          <i class="bi bi-graph-up"></i>
+          <span>Ventas</span>
+        </a>
+        <a href="finanzas.html" class="nav-link">
+          <i class="bi bi-calculator"></i>
+          <span>Finanzas</span>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle mobile-only" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- 📱 Mobile Sidebar UNIVERSAL -->
+  <div class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <img src="../assets/images/logo.png" alt="ROCA" class="sidebar-logo">
+      <h3>Distribuciones ROCA</h3>
+      <button class="sidebar-close" id="closeSidebar">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <div class="sidebar-menu">
+      <a href="../index.html" class="sidebar-link">
+        <i class="bi bi-house"></i>
+        <span>Dashboard</span>
+      </a>
+      <a href="productos.html" class="sidebar-link">
+        <i class="bi bi-box-seam"></i>
+        <span>Productos</span>
+      </a>
+      <a href="clientes.html" class="sidebar-link sidebar-link-active">
+        <i class="bi bi-people"></i>
+        <span>Clientes</span>
+      </a>
+      <!-- Ventas con submenú -->
+      <a href="ventas.html" class="sidebar-link sidebar-link-ventas" id="sidebarVentasLink" tabindex="0">
+        <i class="bi bi-graph-up"></i>
+        <span>Ventas</span>
+        <button class="sidebar-submenu-toggle" id="ventasSubmenuToggle" aria-label="Mostrar submenú Ventas" tabindex="0">
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </a>
+      <div class="sidebar-submenu" id="ventasSubmenu">
+        <button class="sidebar-submenu-link" data-submodulo="registrar-venta">
+          <i class="bi bi-plus-circle"></i> Registrar Venta
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="facturas">
+          <i class="bi bi-receipt"></i> Facturas
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="reportes">
+          <i class="bi bi-bar-chart"></i> Reportes
+        </button>
+      </div>
+      <!-- Finanzas con submenú -->
+      <a href="finanzas.html" class="sidebar-link sidebar-link-finanzas" id="sidebarFinanzasLink" tabindex="0">
+        <i class="bi bi-calculator"></i>
+        <span>Finanzas</span>
+        <button class="sidebar-submenu-toggle" id="finanzasSubmenuToggle" aria-label="Mostrar submenú Finanzas" tabindex="0">
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </a>
+      <div class="sidebar-submenu" id="finanzasSubmenu">
+        <button class="sidebar-submenu-link" data-submodulo="analisis">
+          <i class="bi bi-graph-up-arrow"></i> Análisis
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="ganancias">
+          <i class="bi bi-cash-coin"></i> Ganancias
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="compras">
+          <i class="bi bi-bag-plus"></i> Compras
+        </button>
+        <button class="sidebar-submenu-link" data-submodulo="flujo-caja">
+          <i class="bi bi-cash-stack"></i> Flujo de Caja
+        </button>
+      </div>
+      
+      <!-- Control de Sonido -->
+      <div class="sidebar-sound-control">
+        <div class="sound-control-content">
+          <div class="sound-control-info">
+            <i class="bi bi-volume-up-fill sound-icon"></i>
+            <span class="sound-text">Sonidos de Notificación</span>
+          </div>
+          <button class="sound-toggle-btn" id="soundToggleBtnSidebar" title="Alternar sonidos">
+            <i class="bi bi-toggle-on"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- 🎯 Page Header -->
+    <section class="dashboard-header">
+      <div class="container">
+        <div class="header-content">
+          <div class="header-text">
+            <h1 class="dashboard-title">Clientes</h1>
+            <p class="dashboard-subtitle">Gestiona tu cartera de clientes</p>
+          </div>
+          <div class="header-date">
+            <div class="date-card">
+              <i class="bi bi-people"></i>
+              <span id="totalClientesHeader">0 clientes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- 📝 Formulario de Cliente -->
+      <section class="quick-stats">
+        <div class="content-card animate-fade-in-up">
+          <div class="card-header">
+            <h3>
+              <i class="bi bi-person-plus"></i>
+              <span id="formTitle">Agregar Cliente</span>
+            </h3>
+          </div>
+          <div class="card-content">
+            <form id="clienteForm" class="form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombre" class="form-label required">Nombre</label>
+                  <input type="text" id="nombre" class="form-control" required placeholder="Nombre del cliente">
+                </div>
+                <div class="form-group">
+                  <label for="nit" class="form-label required">NIT</label>
+                  <input type="text" id="nit" class="form-control" required placeholder="Número de identificación">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="direccion" class="form-label required">Dirección</label>
+                  <input type="text" id="direccion" class="form-control" required placeholder="Dirección completa">
+                </div>
+                <div class="form-group">
+                  <label for="telefono" class="form-label required">Teléfono</label>
+                  <input type="tel" id="telefono" class="form-control" required placeholder="Número de contacto">
+                </div>
+              </div>
+              <div class="form-actions" style="margin-top: var(--space-lg); display: flex; gap: var(--space-md); justify-content: flex-end;">
+                <button type="button" id="cancelarEdicion" class="btn btn-secondary d-none">
+                  <i class="bi bi-x-circle"></i>
+                  Cancelar
+                </button>
+                <button type="submit" id="btnGuardar" class="btn btn-primary">
+                  <i class="bi bi-save"></i>
+                  Guardar Cliente
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- 📊 Lista de Clientes -->
+      <section class="dashboard-content">
+        <!-- Vista Desktop - Tabla -->
+        <div class="content-card desktop-only animate-fade-in-up delay-200">
+          <div class="card-header">
+            <h3>
+              <i class="bi bi-list-ul"></i>
+              Lista de Clientes
+            </h3>
+            <div class="header-actions">
+              <div class="table-search">
+                <input type="text" id="searchClientes" placeholder="Buscar clientes...">
+                <i class="bi bi-search table-search-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-content" style="padding: 0;">
+            <div class="table-container">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>NIT</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="clientesBody">
+                  <!-- Los clientes se insertan aquí -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vista Mobile - Cards -->
+        <div class="mobile-only animate-fade-in-up delay-200">
+          <div class="section-header">
+            <h2>
+              <i class="bi bi-list-ul"></i>
+              Lista de Clientes
+            </h2>
+          </div>
+          <!-- Búsqueda Móvil -->
+          <div class="form-search" style="margin-bottom: var(--space-lg);">
+            <input type="text" id="searchClientesMobile" class="form-control" placeholder="Buscar clientes...">
+            <i class="bi bi-search form-search-icon"></i>
+          </div>
+          <div id="clientesMobileContainer" class="card-group cols-1">
+            <!-- Las tarjetas de clientes se insertan aquí -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 📱 Bottom Navigation (Mobile) -->
+  <nav class="bottom-navigation mobile-only">
+    <a href="../index.html" class="bottom-nav-item">
+      <i class="bi bi-house"></i>
+      <span>Inicio</span>
+    </a>
+    <a href="productos.html" class="bottom-nav-item">
+      <i class="bi bi-box-seam"></i>
+      <span>Productos</span>
+    </a>
+    <a href="ventas.html" class="bottom-nav-item">
+      <i class="bi bi-graph-up"></i>
+      <span>Ventas</span>
+    </a>
+    <a href="clientes.html" class="bottom-nav-item active">
+      <i class="bi bi-people-fill"></i>
+      <span>Clientes</span>
+    </a>
+    <a href="finanzas.html" class="bottom-nav-item">
+      <i class="bi bi-calculator"></i>
+      <span>Finanzas</span>
+    </a>
+  </nav>
+
+  <!-- 🔄 Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Cargando clientes...</p>
+    </div>
+  </div>
+
+  <!-- 🍞 Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript Modules -->
+  <script type="module" src="../js/config/firebase.js"></script>
+  <script type="module" src="../js/components/navigation.js"></script>
+  <script type="module" src="../js/components/toast.js"></script>
+  <script type="module" src="../js/components/soundControlGlobal.js"></script>
+  <script type="module" src="../js/components/modal.js"></script>
+  <script type="module" src="../js/utils/helpers.js"></script>
+  <script type="module" src="../js/utils/validators.js"></script>
+  <script type="module" src="../js/modules/clientes.js"></script>
+
+  <style>
+    /* Estilos específicos para la página de clientes */
+    .form-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: flex-end;
+      margin-top: var(--space-lg);
+    }
+
+    .d-none {
+      display: none !important;
+    }
+
+    /* Cliente Cards para móvil */
+    .cliente-card {
+      background: var(--ios-bg-elevated);
+      border: 1px solid var(--ios-separator);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .cliente-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cliente-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-md);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--ios-separator);
+    }
+
+    .cliente-card-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--ios-text-primary);
+      margin: 0;
+    }
+
+    .cliente-card-actions {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    .cliente-card-body {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .cliente-card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cliente-card-label {
+      font-size: var(--font-size-sm);
+      color: var(--ios-text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .cliente-card-value {
+      font-size: var(--font-size-sm);
+      color: var(--ios-text-primary);
+      text-align: right;
+      max-width: 60%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Búsqueda */
+    .table-search {
+      position: relative;
+      width: 300px;
+    }
+
+    .table-search input {
+      width: 100%;
+      padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-3xl);
+      border: 1px solid var(--ios-separator);
+      border-radius: var(--radius-lg);
+      background: var(--ios-bg-elevated);
+      font-size: var(--font-size-sm);
+      transition: all var(--transition-fast);
+    }
+
+    .table-search input:focus {
+      outline: none;
+      border-color: var(--ios-blue);
+      box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+    }
+
+    .table-search-icon {
+      position: absolute;
+      left: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ios-text-tertiary);
+      pointer-events: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .form-actions {
+        flex-direction: column-reverse;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+
+    /* Botón Volver Flotante (siempre visible en móvil) */
+    .btn-fab-volver {
+      position: fixed;
+      bottom: 90px;
+      right: 18px;
+      z-index: 1200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ios-blue);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0,122,255,0.18);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      border: none;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+    }
+    .btn-fab-volver:active {
+      background: var(--ios-blue-dark);
+      transform: scale(0.96);
+    }
+    @media (max-width: 700px) {
+      .btn-fab-volver {
+        display: flex;
+      }
+    }
+  </style>
+
+  <!-- Botón Volver Flotante (siempre visible en móvil) -->
+  <button id="btnFabVolver" class="btn-fab-volver" onclick="volverAtras()" title="Volver">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+
+  <script>
+    function volverAtras() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '../index.html';
+      }
+    }
+  </script>
+</body>
+</html>

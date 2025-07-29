@@ -1,0 +1,2498 @@
+/* ===================================
+   FINANZAS MODULE STYLES
+   =================================== */
+
+/* 💰 Financial Stats Cards */
+.finance-total .stat-icon {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+  }
+  
+  .finance-module {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  
+  .finance-module:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* 📊 Analysis Cards */
+  .analysis-section {
+    margin-top: 2rem;
+  }
+  
+  .analysis-container {
+    background: var(--ios-background-secondary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .analysis-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--ios-separator);
+    transition: all 0.3s ease;
+  }
+  
+  .analysis-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .analysis-card .card-header {
+    background: var(--ios-background-tertiary);
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--ios-separator);
+  }
+  
+  .analysis-card .card-header h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .analysis-card .card-content {
+    padding: 1.25rem;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  /* 🏆 Suppliers Analysis */
+  .supplier-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--ios-background-tertiary);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease;
+  }
+  
+  .supplier-item:hover {
+    background: var(--ios-blue-light);
+  }
+  
+  .supplier-rank {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  .supplier-rank.gold {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #b8860b;
+  }
+  
+  .supplier-rank.silver {
+    background: linear-gradient(135deg, #c0c0c0, #e6e6e6);
+    color: #666;
+  }
+  
+  .supplier-rank.bronze {
+    background: linear-gradient(135deg, #cd7f32, #daa560);
+    color: #8b4513;
+  }
+  
+  .supplier-info {
+    flex: 1;
+  }
+  
+  .supplier-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+  }
+  
+  .supplier-stats {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--ios-text-secondary);
+  }
+  
+  .supplier-score {
+    text-align: right;
+    font-weight: 600;
+    color: var(--ios-blue);
+  }
+  
+  .supplier-score small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--ios-text-secondary);
+    font-weight: normal;
+  }
+  
+  /* 💡 Opportunities Analysis */
+  .opportunity-item {
+    background: var(--ios-background-tertiary);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--ios-orange);
+  }
+  
+  .opportunity-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .opportunity-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    flex: 1;
+  }
+  
+  .savings-badge {
+    background: var(--ios-red);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .provider-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .expensive-provider,
+  .cheap-provider {
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .expensive-provider {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+  }
+  
+  .cheap-provider {
+    background: rgba(52, 199, 89, 0.1);
+    border: 1px solid rgba(52, 199, 89, 0.2);
+  }
+  
+  .provider-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--ios-text-secondary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .provider-name {
+    display: block;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .provider-price {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .expensive-provider .provider-price {
+    color: var(--ios-red);
+  }
+  
+  .cheap-provider .provider-price {
+    color: var(--ios-green);
+  }
+  
+  .potential-savings {
+    background: rgba(255, 149, 0, 0.1);
+    border: 1px solid rgba(255, 149, 0, 0.2);
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--ios-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  /* 🎯 Promotions Analysis */
+  .promotion-item {
+    background: var(--ios-background-tertiary);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--ios-green);
+  }
+  
+  .promotion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  
+  .promotion-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .promotion-badge.active {
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--ios-green);
+    border: 1px solid rgba(52, 199, 89, 0.2);
+  }
+  
+  .discount-badge {
+    background: var(--ios-blue);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  .promotion-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+  }
+  
+  .quantity-rule {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--ios-text-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .price-info {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .original-price {
+    text-decoration: line-through;
+    color: var(--ios-text-secondary);
+    font-size: 0.9rem;
+  }
+  
+  .promo-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ios-green);
+  }
+  
+  /* 📝 Purchase Form Styles */
+  .compra-form {
+    max-width: none;
+  }
+  
+  .valor-total-display {
+    background: var(--ios-blue-light);
+    border: 1px solid var(--ios-blue);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    color: var(--ios-blue);
+  }
+  
+  .valor-total-display i {
+    font-size: 1.25rem;
+  }
+  
+  .valor-total-display strong {
+    color: var(--ios-blue);
+    font-size: 1.25rem;
+  }
+  
+  /* 🔍 Autocomplete Dropdown */
+  .autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid var(--ios-separator);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+  }
+  
+  .autocomplete-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--ios-separator);
+    transition: background-color 0.2s ease;
+  }
+  
+  .autocomplete-item:hover {
+    background: var(--ios-background-tertiary);
+  }
+  
+  .autocomplete-item:last-child {
+    border-bottom: none;
+  }
+  
+  .product-name {
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .product-info {
+    font-size: 0.8rem;
+    color: var(--ios-text-secondary);
+  }
+  
+  /* 📊 Purchase Analysis */
+  .purchase-analysis {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--ios-separator);
+    padding-top: 1.5rem;
+  }
+  
+  .analysis-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .analysis-section h4 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .product-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .info-item {
+    background: var(--ios-background-tertiary);
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .info-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--ios-text-secondary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .info-value {
+    display: block;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+  }
+  
+  /* 💹 Profitability Analysis */
+  .profitability-analysis {
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid;
+  }
+  
+  .profitability-analysis.excellent {
+    background: rgba(52, 199, 89, 0.1);
+    border-color: var(--ios-green);
+  }
+  
+  .profitability-analysis.good {
+    background: rgba(255, 149, 0, 0.1);
+    border-color: var(--ios-orange);
+  }
+  
+  .profitability-analysis.poor {
+    background: rgba(255, 59, 48, 0.1);
+    border-color: var(--ios-red);
+  }
+  
+  .margin-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .margin-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .excellent .margin-value {
+    color: var(--ios-green);
+  }
+  
+  .good .margin-value {
+    color: var(--ios-orange);
+  }
+  
+  .poor .margin-value {
+    color: var(--ios-red);
+  }
+  
+  .margin-label {
+    font-size: 0.9rem;
+    color: var(--ios-text-secondary);
+  }
+  
+  .profit-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--ios-text-secondary);
+  }
+  
+  /* 🔄 Recommendations */
+  .recommendation {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .recommendation.excellent {
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--ios-green);
+    border: 1px solid rgba(52, 199, 89, 0.2);
+  }
+  
+  .recommendation.warning {
+    background: rgba(255, 149, 0, 0.1);
+    color: var(--ios-orange);
+    border: 1px solid rgba(255, 149, 0, 0.2);
+  }
+  
+  .recommendation.danger {
+    background: rgba(255, 59, 48, 0.1);
+    color: var(--ios-red);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+  }
+  
+  /* 📈 Suppliers Comparison */
+  .suppliers-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  
+  .supplier-price {
+    padding: 0.75rem;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid var(--ios-separator);
+    background: var(--ios-background-tertiary);
+  }
+  
+  .supplier-price.best {
+    background: rgba(52, 199, 89, 0.1);
+    border-color: var(--ios-green);
+  }
+  
+  .supplier-price.worst {
+    background: rgba(255, 59, 48, 0.1);
+    border-color: var(--ios-red);
+  }
+  
+  .supplier-name {
+    display: block;
+    font-weight: 600;
+    color: var(--ios-text-primary);
+    margin-bottom: 0.25rem;
+  }
+  
+  .supplier-price-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  
+  .supplier-price.best .supplier-price-value {
+    color: var(--ios-green);
+  }
+  
+  .supplier-price.worst .supplier-price-value {
+    color: var(--ios-red);
+  }
+  
+  /* 📱 Table Analysis Badges */
+  .price-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+  
+  .price-badge.excellent {
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--ios-green);
+  }
+  
+  .price-badge.good {
+    background: rgba(255, 149, 0, 0.1);
+    color: var(--ios-orange);
+  }
+  
+  .price-badge.regular {
+    background: rgba(0, 122, 255, 0.1);
+    color: var(--ios-blue);
+  }
+  
+  .price-badge.expensive {
+    background: rgba(255, 59, 48, 0.1);
+    color: var(--ios-red);
+  }
+  
+  .analysis-cell {
+    font-size: 0.85rem;
+  }
+  
+  .profitability {
+    margin-top: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .profitability.success {
+    background: rgba(52, 199, 89, 0.1);
+    color: var(--ios-green);
+  }
+  
+  .profitability.warning {
+    background: rgba(255, 149, 0, 0.1);
+    color: var(--ios-orange);
+  }
+  
+  .profitability.danger {
+    background: rgba(255, 59, 48, 0.1);
+    color: var(--ios-red);
+  }
+  
+  /* 📱 Mobile Responsive */
+  @media (max-width: 768px) {
+    .analysis-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .supplier-item {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.75rem;
+    }
+    
+    .supplier-stats {
+      justify-content: center;
+    }
+    
+    .provider-comparison {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+    
+    .profit-details {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    
+    .suppliers-comparison {
+      grid-template-columns: 1fr;
+    }
+    
+    .purchase-analysis {
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+    
+    .product-info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* 🌟 New Feature Indicators */
+  .new-feature-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    animation: pulse 2s infinite;
+  }
+  
+  .new-feature-text {
+    color: var(--ios-orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .new-feature-indicator {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 12px;
+    height: 12px;
+    background: var(--ios-red);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  
+  /* 💼 Activity Icons */
+  .activity-icon.purchase {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+  }
+  
+  /* 🎨 Enhanced Focus States */
+  .form-control:focus + .autocomplete-dropdown {
+    display: block;
+  }
+  
+  .autocomplete-item:focus {
+    background: var(--ios-blue-light);
+    outline: none;
+  }
+  
+  /* ⚡ Animation Enhancements */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+  
+  .opportunity-item,
+  .promotion-item,
+  .supplier-item {
+    animation: slideInUp 0.3s ease-out;
+  }
+  
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* === Estilos adicionales para la sección de compras === */
+
+/* Contenedor de la tabla */
+.table-container {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  padding: 1.5rem 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid var(--ios-separator);
+}
+
+/* Cabecera de la tabla */
+.data-table thead tr {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+.data-table thead th {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  padding: 0.85rem 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+/* Filas de la tabla */
+.data-table tbody tr {
+  transition: background 0.2s;
+}
+.data-table tbody tr:hover {
+  background: #f3f4fa;
+}
+
+/* Celdas */
+.data-table td {
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.98rem;
+}
+
+/* Mensaje vacío */
+.data-table tbody tr td {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
+  padding: 2.5rem 0;
+  background: #f8f8fc;
+  border-radius: 12px;
+  font-style: italic;
+  letter-spacing: 0.2px;
+}
+
+/* Responsive para la tabla */
+@media (max-width: 900px) {
+  .table-container {
+    padding: 0.5rem 0.2rem;
+  }
+  .data-table thead th, .data-table td {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.2rem;
+  }
+}
+
+/* === Estilos para filtros y búsqueda de compras === */
+
+.filters-section {
+  margin-bottom: 1.5rem;
+}
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(102, 126, 234, 0.07);
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--ios-separator);
+}
+
+.search-filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  flex: 1;
+}
+
+.search-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 0.6rem 0.9rem 0.6rem 2.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--ios-separator);
+  background: #f8f8fc;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+  min-width: 220px;
+  box-shadow: 0 1px 4px rgba(102, 126, 234, 0.04);
+}
+
+.search-input:focus {
+  border: 1.5px solid #667eea;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.10);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.7rem;
+  color: #667eea;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.filter-group .filter-select,
+.filter-group .filter-input {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--ios-separator);
+  background: #f8f8fc;
+  font-size: 1rem;
+  min-width: 160px;
+  transition: border 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.filter-group .filter-select:focus,
+.filter-group .filter-input:focus {
+  border: 1.5px solid #764ba2;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(118, 75, 162, 0.10);
+}
+
+.btn-clear-filters {
+  background: #f3f4fa;
+  color: #764ba2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.btn-clear-filters:hover {
+  background: #764ba2;
+  color: #fff;
+}
+
+@media (max-width: 700px) {
+  .filters-container {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 0.7rem 0.5rem;
+  }
+  .search-filters {
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+  }
+  .search-input, .filter-group .filter-select, .filter-group .filter-input {
+    min-width: 100%;
+    width: 100%;
+  }
+}
+
+/* --- MEJORAS iOS FINANZAS --- */
+.finanzas-submodulos-menu .submodulo-btn {
+  border-radius: 16px !important;
+  box-shadow: 0 2px 8px rgba(0,122,255,0.08), 0 1.5px 4px rgba(0,0,0,0.04);
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  outline: none;
+  min-height: 44px;
+  min-width: 44px;
+  user-select: none;
+}
+.finanzas-submodulos-menu .submodulo-btn:focus {
+  outline: 2.5px solid var(--ios-blue);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,122,255,0.13);
+}
+.finanzas-submodulos-menu .submodulo-btn:hover {
+  background: var(--ios-blue-light);
+  color: white;
+  box-shadow: 0 6px 18px rgba(0,122,255,0.13);
+  transform: translateY(-2px) scale(1.03);
+}
+.finanzas-submodulos-menu .submodulo-btn:active {
+  background: var(--ios-blue);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,122,255,0.18);
+  transform: scale(0.98);
+}
+.finanzas-submodulo .data-table, .finanzas-submodulo .table, .finanzas-submodulo .table-container {
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px rgba(0,122,255,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
+  border: 1.5px solid var(--ios-separator);
+  overflow-x: auto;
+  background: var(--ios-bg-elevated);
+}
+.finanzas-submodulo .data-table th, .finanzas-submodulo .table th {
+  background: var(--gradient-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+}
+.finanzas-submodulo .data-table td, .finanzas-submodulo .table td {
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.98rem;
+  padding: 0.7rem 0.5rem;
+  transition: background 0.18s;
+}
+.finanzas-submodulo .data-table tbody tr:hover, .finanzas-submodulo .table tbody tr:hover {
+  background: #f3f4fa;
+}
+.finanzas-submodulo .data-table td:focus, .finanzas-submodulo .table td:focus {
+  outline: 2px solid var(--ios-blue-light);
+  background: #eaf4ff;
+}
+.finanzas-submodulo .table-action-btn {
+  background: var(--ios-blue-light);
+  color: var(--ios-blue);
+  border: none;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+  box-shadow: 0 2px 8px rgba(0,122,255,0.08);
+}
+.finanzas-submodulo .table-action-btn:hover, .finanzas-submodulo .table-action-btn:focus {
+  background: var(--ios-blue);
+  color: #fff;
+  transform: translateY(-2px) scale(1.08);
+}
+.finanzas-submodulo .table-action-btn:active {
+  background: var(--ios-blue-dark);
+  color: #fff;
+  transform: scale(0.97);
+}
+@media (max-width: 700px) {
+  .finanzas-submodulos-menu .submodulo-btn {
+    width: 100%;
+    min-width: 0;
+    font-size: 1.08rem;
+    padding: 1.1rem 0.5rem;
+  }
+  .finanzas-submodulo .data-table, .finanzas-submodulo .table, .finanzas-submodulo .table-container {
+    border-radius: 8px !important;
+    min-width: 0;
+    box-shadow: 0 1.5px 4px rgba(0,122,255,0.08);
+  }
+}
+
+/* === iOS Glassmorphism para la tabla de ganancias === */
+.ganancias-ios-glass {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px #0002, 0 1.5px 4px #0001;
+  border: 2.5px solid rgba(0,122,255,0.08);
+  padding: 2.2em 2.5em 2em 2.5em;
+  margin-bottom: 2.5em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+  transition: box-shadow .2s, background .2s;
+}
+.ganancias-ios-glass:hover {
+  box-shadow: 0 16px 48px #0003, 0 2.5px 8px #0001;
+  background: rgba(255,255,255,0.82);
+}
+
+/* Encabezado de la tabla de ganancias */
+.ganancias-ios-glass .data-table thead th {
+  background: linear-gradient(90deg, #e0f0ff 0%, #f8faff 100%);
+  color: #007aff;
+  font-size: 1.13em;
+  font-weight: 700;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #eaf4ff;
+}
+
+/* Celdas de la tabla de ganancias */
+.ganancias-ios-glass .data-table td {
+  background: transparent;
+  font-size: 1.05em;
+  color: #222;
+  border-bottom: 1.5px solid #f0f4fa;
+  padding: 0.95em 0.7em;
+  transition: background 0.18s;
+}
+.ganancias-ios-glass .data-table tbody tr:hover {
+  background: #f6faff;
+  box-shadow: 0 2px 12px #007aff11;
+}
+
+/* Botones de acción iOS en la tabla de ganancias */
+.ganancias-ios-glass .btn-ios, .ganancias-ios-glass .btn {
+  border-radius: 18px !important;
+  font-size: 1em;
+  min-width: 44px;
+  min-height: 44px;
+  box-shadow: 0 2px 8px #007aff11;
+  font-weight: 600;
+  padding: 0.7em 1.3em;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+.ganancias-ios-glass .btn-ios.primary, .ganancias-ios-glass .btn.primary {
+  background: linear-gradient(90deg, #34c759 0%, #30cfff 100%);
+  color: #fff;
+  border: none;
+}
+.ganancias-ios-glass .btn-ios.info, .ganancias-ios-glass .btn.info {
+  background: linear-gradient(90deg, #007aff 0%, #5ac8fa 100%);
+  color: #fff;
+  border: none;
+}
+.ganancias-ios-glass .btn-ios.primary:hover, .ganancias-ios-glass .btn.primary:hover,
+.ganancias-ios-glass .btn-ios.info:hover, .ganancias-ios-glass .btn.info:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px #007aff22;
+}
+
+/* Badges iOS para ganancias */
+.ios-badge {
+  display: inline-block;
+  padding: 0.32em 1.1em;
+  border-radius: 999px;
+  font-size: 0.98em;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: #f2f6ff;
+  color: #007aff;
+  border: 1.5px solid #e0eaff;
+  box-shadow: 0 1.5px 6px #007aff11;
+  margin-right: 0.5em;
+}
+.ios-badge-success {
+  background: #eafff2;
+  color: #34c759;
+  border-color: #d6f8e6;
+}
+.ios-badge-warning {
+  background: #fffbe0;
+  color: #ffd60a;
+  border-color: #fff6b0;
+}
+.ios-badge-danger {
+  background: #ffe0e0;
+  color: #ff3b30;
+  border-color: #ffd6d6;
+}
+
+/* Animación de entrada para glass */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Responsive: tabla como cards en móvil */
+@media (max-width: 700px) {
+  .ganancias-ios-glass {
+    padding: 1.5em 1em;
+    margin-bottom: 1.5em;
+    border-radius: 20px;
+  }
+  
+  .ganancias-ios-glass .table-container, 
+  .ganancias-ios-glass .data-table {
+    min-width: 0;
+    border-radius: 16px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  
+  .ganancias-ios-glass .data-table thead {
+    display: none;
+  }
+  
+  .ganancias-ios-glass .data-table tbody {
+    display: block;
+  }
+  
+  .ganancias-ios-glass .data-table tbody tr {
+    display: block;
+    margin-bottom: 1em;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,122,255,0.08);
+    padding: 1.2em;
+    border: 1.5px solid #e0eaff;
+    transition: all 0.2s ease;
+  }
+  
+  .ganancias-ios-glass .data-table tbody tr:hover {
+    box-shadow: 0 4px 20px rgba(0,122,255,0.12);
+    transform: translateY(-2px);
+  }
+  
+  .ganancias-ios-glass .data-table td {
+    display: block;
+    border: none;
+    padding: 0.8em 0;
+    font-size: 1.1em;
+    text-align: left;
+    position: relative;
+  }
+  
+  .ganancias-ios-glass .data-table td:not(:last-child) {
+    border-bottom: 1px solid #f0f4fa;
+  }
+  
+  /* Estilo para las etiquetas en móvil */
+  .ganancias-ios-glass .data-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #007aff;
+    margin-bottom: 0.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Producto - sin etiqueta, es el título */
+  .ganancias-ios-glass .data-table td:first-child::before {
+    display: none;
+  }
+  
+  .ganancias-ios-glass .data-table td:first-child {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #007aff;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #e0eaff;
+  }
+  
+  /* Valores monetarios */
+  .ganancias-ios-glass .data-table td:nth-child(2),
+  .ganancias-ios-glass .data-table td:nth-child(3),
+  .ganancias-ios-glass .data-table td:nth-child(4) {
+    font-weight: 600;
+    color: #222;
+  }
+  
+  /* Ganancia total - destacada */
+  .ganancias-ios-glass .data-table td:nth-child(4) {
+    font-size: 1.2em;
+    color: #34c759;
+    font-weight: 700;
+  }
+  
+  /* Botones de acción - en móvil */
+  .ganancias-ios-glass .data-table td:last-child {
+    border: none;
+    padding-top: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  
+  .ganancias-ios-glass .data-table td:last-child::before {
+    display: none;
+  }
+  
+  .ganancias-ios-glass .btn-ios, 
+  .ganancias-ios-glass .btn {
+    width: 100%;
+    padding: 1em;
+    font-size: 1.1em;
+    border-radius: 12px;
+    font-weight: 600;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+  
+  .ganancias-ios-glass .btn-ios i, 
+  .ganancias-ios-glass .btn i {
+    font-size: 1.4em;
+  }
+  
+  /* Botón Retirar */
+  .ganancias-ios-glass .btn-ios.primary, 
+  .ganancias-ios-glass .btn.primary {
+    background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
+    box-shadow: 0 4px 12px rgba(52,199,89,0.3);
+  }
+  
+  /* Botón Ver */
+  .ganancias-ios-glass .btn-ios.info, 
+  .ganancias-ios-glass .btn.info {
+    background: linear-gradient(135deg, #007aff 0%, #5ac8fa 100%);
+    box-shadow: 0 4px 12px rgba(0,122,255,0.3);
+  }
+  
+  /* Estado vacío */
+  .ganancias-ios-glass .empty-state {
+    background: #f6faff;
+    border-radius: 16px;
+    padding: 2em 1.5em;
+    text-align: center;
+    border: 2px dashed #e0eaff;
+  }
+  
+  .ganancias-ios-glass .empty-state i {
+    font-size: 3em;
+    color: #007aff;
+    margin-bottom: 0.5em;
+    display: block;
+  }
+  
+  .ganancias-ios-glass .empty-state p {
+    font-size: 1.1em;
+    color: #666;
+    margin: 0;
+  }
+}
+
+/* Mejoras para tablets */
+@media (min-width: 701px) and (max-width: 1024px) {
+  .ganancias-ios-glass {
+    padding: 2em;
+  }
+  
+  .ganancias-ios-glass .btn-ios, 
+  .ganancias-ios-glass .btn {
+    padding: 0.8em 1.2em;
+    font-size: 0.95em;
+  }
+}
+
+/* --- Mejoras visuales para modales de ganancias --- */
+.ganancias-modal-glass {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px #0002, 0 1.5px 4px #0001;
+  border: 2.5px solid rgba(0,122,255,0.08);
+  padding: 2em 2em 1.5em 2em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+}
+.ganancias-modal-glass h3, .ganancias-modal-glass h4 {
+  color: #007aff;
+  font-weight: 700;
+}
+.ganancias-modal-glass .detalle-label {
+  color: #888;
+  font-weight: 500;
+}
+.ganancias-modal-glass .detalle-value {
+  color: #222;
+  font-weight: 700;
+}
+.ganancias-modal-glass .empty-state {
+  background: #f6faff;
+  border-radius: 16px;
+  padding: 1.2em;
+  color: #007aff;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* --- Efecto de sombra y animación para los botones de acción --- */
+.ganancias-ios-glass .btn-ios, .ganancias-ios-glass .btn {
+  box-shadow: 0 2px 8px #007aff11, 0 1.5px 4px #0001;
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.ganancias-ios-glass .btn-ios:active, .ganancias-ios-glass .btn:active {
+  box-shadow: 0 1px 2px #007aff22;
+  transform: scale(0.97);
+}
+
+/* --- Ajuste de iconos grandes en acciones --- */
+.ganancias-ios-glass .btn-ios i, .ganancias-ios-glass .btn i {
+  font-size: 1.35em;
+  margin-right: 0.3em;
+}
+
+/* --- Mejoras para la tabla de historial de retiros --- */
+.ganancias-modal-glass .data-table {
+  border-radius: 16px;
+  box-shadow: 0 2px 8px #007aff11;
+  background: #fff;
+}
+.ganancias-modal-glass .data-table th {
+  background: linear-gradient(90deg, #e0f0ff 0%, #f8faff 100%);
+  color: #007aff;
+  font-size: 1.05em;
+  font-weight: 700;
+}
+.ganancias-modal-glass .data-table td {
+  background: transparent;
+  color: #222;
+  font-size: 1em;
+}
+
+/* --- Mejoras móviles para modales de ganancias --- */
+@media (max-width: 700px) {
+  .ganancias-modal-glass {
+    padding: 1.5em 1em;
+    border-radius: 20px;
+    margin: 1em;
+  }
+  
+  .ganancias-modal-glass .modal-header {
+    padding: 1.5em 1em 1em 1em;
+  }
+  
+  .ganancias-modal-glass .modal-body {
+    padding: 1em;
+  }
+  
+  .ganancias-modal-glass .modal-footer {
+    padding: 1em;
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  
+  .ganancias-modal-glass .modal-footer .btn {
+    width: 100%;
+    padding: 1em;
+    font-size: 1.1em;
+    min-height: 48px;
+  }
+  
+  /* Detalles de ganancias en móvil */
+  .ganancias-modal-glass .ganancias-detalle {
+    background: #f6faff;
+    border-radius: 12px;
+    padding: 1.2em;
+    margin-bottom: 1.5em;
+  }
+  
+  .ganancias-modal-glass .detalle-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8em 0;
+    border-bottom: 1px solid #e0eaff;
+  }
+  
+  .ganancias-modal-glass .detalle-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .ganancias-modal-glass .detalle-label {
+    font-size: 0.95em;
+    color: #666;
+    font-weight: 500;
+  }
+  
+  .ganancias-modal-glass .detalle-value {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #222;
+  }
+  
+  /* Tabla de historial en móvil */
+  .ganancias-modal-glass .table-container {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .ganancias-modal-glass .data-table {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  
+  .ganancias-modal-glass .data-table thead {
+    display: none;
+  }
+  
+  .ganancias-modal-glass .data-table tbody tr {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 0.8em;
+    padding: 1em;
+    box-shadow: 0 2px 8px rgba(0,122,255,0.08);
+    border: 1px solid #e0eaff;
+  }
+  
+  .ganancias-modal-glass .data-table td {
+    display: block;
+    border: none;
+    padding: 0.6em 0;
+    font-size: 1em;
+    text-align: left;
+  }
+  
+  .ganancias-modal-glass .data-table td:not(:last-child) {
+    border-bottom: 1px solid #f0f4fa;
+  }
+  
+  .ganancias-modal-glass .data-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #007aff;
+    margin-bottom: 0.2em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Estado vacío en modal */
+  .ganancias-modal-glass .empty-state {
+    background: #f6faff;
+    border-radius: 12px;
+    padding: 2em 1.5em;
+    text-align: center;
+    border: 2px dashed #e0eaff;
+    margin: 1em 0;
+  }
+  
+  .ganancias-modal-glass .empty-state i {
+    font-size: 2.5em;
+    color: #007aff;
+    margin-bottom: 0.5em;
+    display: block;
+  }
+  
+  .ganancias-modal-glass .empty-state p {
+    font-size: 1em;
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Formulario de retiro en móvil */
+  .ganancias-modal-glass .retiro-form .form-group {
+    margin-bottom: 1.5em;
+  }
+  
+  .ganancias-modal-glass .form-label {
+    font-size: 1em;
+    font-weight: 600;
+    color: #007aff;
+    margin-bottom: 0.5em;
+    display: block;
+  }
+  
+  .ganancias-modal-glass .form-control {
+    width: 100%;
+    padding: 1em;
+    font-size: 1.1em;
+    border-radius: 12px;
+    border: 2px solid #e0eaff;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  
+  .ganancias-modal-glass .form-control:focus {
+    border-color: #007aff;
+    box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+    outline: none;
+  }
+}
+
+/* === Cards de recomendación y ganancias (móvil y desktop) === */
+.reco-card-glass {
+  background: rgba(255,255,255,0.85);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px #0002, 0 1.5px 4px #0001;
+  border: 2.5px solid #e0eaff;
+  padding: 1.5em 1.2em 1.2em 1.2em;
+  margin-bottom: 2em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+  transition: box-shadow .2s, background .2s;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reco-card-glass.prudente { border-color: #34c759; }
+.reco-card-glass.moderado { border-color: #ffd60a; }
+.reco-card-glass.peligro { border-color: #ff3b30; }
+.reco-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  margin-bottom: 0.7em;
+}
+.reco-card-icon {
+  font-size: 2.5em;
+  color: #ff3b30;
+  filter: drop-shadow(0 2px 6px #0002);
+}
+.reco-card-glass.prudente .reco-card-icon { color: #34c759; }
+.reco-card-glass.moderado .reco-card-icon { color: #ffd60a; }
+.reco-card-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.2em;
+}
+.reco-card-msg {
+  font-size: 1.05em;
+  color: #222;
+  margin-bottom: 0.2em;
+}
+.reco-card-body {
+  margin-top: 0.5em;
+}
+.reco-badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0.7em 0 0.5em 0;
+}
+.reco-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.98em;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.35em 1em;
+  box-shadow: 0 1.5px 6px #007aff11;
+  border: 1.5px solid #e0eaff;
+  background: #f2f6ff;
+  color: #007aff;
+  transition: background .18s, color .18s;
+}
+.reco-badge i { font-size: 1.1em; }
+.reco-card-details {
+  margin-top: 0.7em;
+  font-size: 0.98em;
+}
+.reco-card-details ul { margin: 0.5em 0 0 1.2em; }
+
+/* === Cards de ganancias por producto (móvil) === */
+.ganancias-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2em;
+  margin-bottom: 1.5em;
+}
+.ganancia-card-glass {
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #007aff11;
+  border: 2px solid #e0eaff;
+  padding: 1.2em 1em 1em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+}
+.ganancia-card-title {
+  font-size: 1.15em;
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 0.2em;
+}
+.ganancia-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7em;
+  font-size: 1em;
+  padding: 0.2em 0;
+}
+.ganancia-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.98em;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.25em 0.9em;
+  background: #eaf4ff;
+  color: #007aff;
+}
+.ganancia-badge.blue { background: #eaf4ff; color: #007aff; }
+.ganancia-badge.purple { background: #f0eaff; color: #5e5ce6; }
+.ganancia-badge.green { background: #eafff2; color: #34c759; }
+.ganancia-card-total { font-weight: 700; color: #34c759; font-size: 1.1em; }
+.ganancia-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  margin-top: 0.5em;
+}
+.ganancia-card-actions .btn {
+  width: 100%;
+  font-size: 1.05em;
+  min-height: 44px;
+  border-radius: 12px;
+}
+
+@media (min-width: 701px) {
+  .ganancias-cards-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .ganancias-cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+  .reco-card-glass {
+    padding: 1.2em 0.7em 1em 0.7em;
+    border-radius: 16px;
+    margin: 1em 0.2em 1.5em 0.2em;
+  }
+  .ganancia-card-glass {
+    padding: 1em 0.7em 0.8em 0.7em;
+    border-radius: 14px;
+  }
+}
+
+/* === MÓDULO DE FLUJO DE CAJA === */
+.cash-flow-module {
+  background: rgba(255,255,255,0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,122,255,0.1);
+  border: 2px solid #e0eaff;
+  padding: 2em;
+  margin-bottom: 2em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+}
+
+.cash-flow-module .module-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2em;
+  gap: 1.5em;
+}
+
+.cash-flow-module .header-content h2 {
+  font-size: 1.8em;
+  font-weight: 700;
+  color: #007aff;
+  margin: 0 0 0.5em 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.cash-flow-module .header-content p {
+  font-size: 1.1em;
+  color: #666;
+  margin: 0 0 1em 0;
+}
+
+.cash-flow-module .implementation-notice {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.9em;
+  color: #ff9500;
+  background: #fff3cd;
+  padding: 0.8em 1em;
+  border-radius: 12px;
+  border: 1px solid #ffeaa7;
+}
+
+.cash-flow-module .header-actions {
+  display: flex;
+  gap: 0.8em;
+  flex-wrap: wrap;
+}
+
+.cash-flow-module .btn-ios {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.8em 1.2em;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.95em;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  min-height: 44px;
+}
+
+.cash-flow-module .btn-ios.primary {
+  background: #007aff;
+  color: white;
+  box-shadow: 0 3px 12px rgba(0,122,255,0.25);
+}
+
+.cash-flow-module .btn-ios.primary:hover {
+  background: #0051d5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,122,255,0.35);
+}
+
+.cash-flow-module .btn-ios.secondary {
+  background: #f8f9fa;
+  color: #007aff;
+  border: 2px solid #e0eaff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cash-flow-module .btn-ios.secondary:hover {
+  background: #e0eaff;
+  color: #0051d5;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,122,255,0.15);
+}
+
+.cash-flow-module .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5em;
+  margin-bottom: 2em;
+}
+
+.cash-flow-module .stat-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 1.5em;
+  box-shadow: 0 4px 16px rgba(0,122,255,0.08);
+  border: 2px solid #e0eaff;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  transition: all 0.2s ease;
+}
+
+.cash-flow-module .stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,122,255,0.12);
+}
+
+.cash-flow-module .stat-icon {
+  font-size: 2.5em;
+  border-radius: 12px;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cash-flow-module .stat-icon.success {
+  background: #e8f5e8;
+  color: #34c759;
+}
+
+.cash-flow-module .stat-icon.danger {
+  background: #ffeaea;
+  color: #ff3b30;
+}
+
+.cash-flow-module .stat-icon.info {
+  background: #e0eaff;
+  color: #007aff;
+}
+
+.cash-flow-module .stat-icon.warning {
+  background: #fff3cd;
+  color: #ff9500;
+}
+
+.cash-flow-module .stat-content h3 {
+  font-size: 1.8em;
+  font-weight: 700;
+  margin: 0 0 0.3em 0;
+  color: #222;
+}
+
+.cash-flow-module .stat-content p {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.cash-flow-module .filters-section {
+  background: rgba(255,255,255,0.8);
+  border-radius: 16px;
+  padding: 1.5em;
+  margin-bottom: 2em;
+  border: 2px solid #e0eaff;
+}
+
+.cash-flow-module .filters-row {
+  display: flex;
+  gap: 1.5em;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.cash-flow-module .filter-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.cash-flow-module .form-label {
+  display: block;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #007aff;
+  margin-bottom: 0.5em;
+}
+
+.cash-flow-module .form-control {
+  width: 100%;
+  padding: 0.8em 1em;
+  border: 2px solid #e0eaff;
+  border-radius: 12px;
+  font-size: 1em;
+  background: white;
+  transition: all 0.2s ease;
+}
+
+.cash-flow-module .form-control:focus {
+  outline: none;
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+}
+
+.cash-flow-module .filter-actions {
+  display: flex;
+  gap: 0.8em;
+  align-items: end;
+}
+
+.cash-flow-module .view-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.cash-flow-module .view-toggle {
+  display: flex;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 0.3em;
+  border: 2px solid #e0eaff;
+}
+
+.cash-flow-module .view-toggle .btn-ios {
+  border-radius: 8px;
+  padding: 0.7em 1.2em;
+  font-size: 0.9em;
+  min-height: 40px;
+}
+
+.cash-flow-module .movements-container {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 1.5em;
+  border: 2px solid #e0eaff;
+  margin-bottom: 2em;
+}
+
+.cash-flow-module .pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-top: 2em;
+}
+
+.cash-flow-module .pagination-numbers {
+  display: flex;
+  gap: 0.5em;
+}
+
+.cash-flow-module .pagination-info {
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 1em;
+}
+
+/* Responsive para flujo de caja */
+@media (max-width: 768px) {
+  .cash-flow-module {
+    padding: 1.5em 1em;
+    border-radius: 16px;
+  }
+  
+  .cash-flow-module .module-header {
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .cash-flow-module .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cash-flow-module .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1em;
+  }
+  
+  .cash-flow-module .filters-row {
+    flex-direction: column;
+    gap: 1em;
+  }
+  
+  .cash-flow-module .filter-group {
+    min-width: auto;
+  }
+  
+  .cash-flow-module .filter-actions {
+    justify-content: center;
+  }
+  
+  .cash-flow-module .btn-ios {
+    font-size: 0.9em;
+    padding: 0.7em 1em;
+  }
+}
+
+/* === OPTIMIZACIÓN VISUAL INTEGRAL PARA MÓDULO DE FINANZAS Y SUBMÓDULOS === */
+
+/* 1. Mejorar responsividad y visualización de tablas como tarjetas en móvil */
+@media (max-width: 700px) {
+  .table-container, .data-table {
+    min-width: 0;
+    border-radius: 16px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+  .data-table thead {
+    display: none;
+  }
+  .data-table tbody {
+    display: block;
+  }
+  .data-table tbody tr {
+    display: block;
+    margin-bottom: 1em;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,122,255,0.08);
+    padding: 1.2em;
+    border: 1.5px solid #e0eaff;
+    transition: all 0.2s ease;
+  }
+  .data-table tbody tr:hover {
+    box-shadow: 0 4px 20px rgba(0,122,255,0.12);
+    transform: translateY(-2px);
+  }
+  .data-table td {
+    display: block;
+    border: none;
+    padding: 0.8em 0;
+    font-size: 1.1em;
+    text-align: left;
+    position: relative;
+  }
+  .data-table td:not(:last-child) {
+    border-bottom: 1px solid #f0f4fa;
+  }
+  .data-table td::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #007aff;
+    margin-bottom: 0.3em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .data-table td:first-child::before {
+    display: none;
+  }
+  .data-table td:first-child {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #007aff;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #e0eaff;
+  }
+  .data-table td:last-child {
+    border: none;
+    padding-top: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  .btn, .btn-ios {
+    width: 100%;
+    padding: 1em;
+    font-size: 1.1em;
+    border-radius: 12px;
+    min-height: 44px;
+    margin-bottom: 0.5em;
+  }
+}
+
+/* 2. Glassmorphism y animaciones para modales */
+.modal-scale {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px #0002, 0 1.5px 4px #0001;
+  border: 2.5px solid #e0eaff;
+  padding: 2em 2em 1.5em 2em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* 3. Barra de pasos para formularios multistep */
+.form-stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+.form-step {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0eaff;
+  color: #007aff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1em;
+  transition: background 0.2s, color 0.2s;
+}
+.form-step.active {
+  background: #007aff;
+  color: #fff;
+  box-shadow: 0 2px 8px #007aff33;
+}
+.form-step.completed {
+  background: #34c759;
+  color: #fff;
+}
+
+/* 4. Mejorar botones e inputs */
+.btn, .btn-ios {
+  border-radius: 14px !important;
+  font-size: 1.08em;
+  font-weight: 600;
+  padding: 0.7em 1.3em;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  box-shadow: 0 2px 8px #007aff11;
+}
+.btn.primary, .btn-ios.primary {
+  background: linear-gradient(90deg, #34c759 0%, #30cfff 100%);
+  color: #fff;
+  border: none;
+}
+.btn.secondary, .btn-ios.secondary {
+  background: #f8f9fa;
+  color: #007aff;
+  border: 2px solid #e0eaff;
+}
+.btn.primary:hover, .btn-ios.primary:hover,
+.btn.secondary:hover, .btn-ios.secondary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px #007aff22;
+}
+.form-control {
+  border-radius: 12px;
+  border: 2px solid #e0eaff;
+  font-size: 1.08em;
+  padding: 0.8em 1em;
+  background: #fff;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.form-control:focus {
+  border-color: #007aff;
+  box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+  outline: none;
+}
+
+/* 5. Mejorar visualización de tarjetas/resúmenes */
+.ganancia-card-glass, .daily-summary-card, .stat-card, .reco-card-glass {
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #007aff11;
+  background: rgba(255,255,255,0.92);
+  padding: 1.2em 1em 1em 1em;
+  margin-bottom: 1em;
+  animation: fadeInUp 0.7s cubic-bezier(.22,1,.36,1);
+}
+
+/* 6. Iconos grandes y coloridos en modales */
+.modal-header .modal-icon {
+  font-size: 2.2em;
+  margin-right: 0.7em;
+  color: #007aff;
+}
+
+/* 7. Mejorar paginación en móvil */
+@media (max-width: 700px) {
+  .pagination-container {
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: stretch;
+  }
+  .pagination-info {
+    text-align: center;
+    margin: 0.5em 0 0 0;
+  }
+}
+
+/* 8. Unificar radios, colores y fuentes */
+:root {
+  --ios-border-radius: 18px;
+  --ios-font-mono: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  --ios-green: #34c759;
+  --ios-blue: #007aff;
+  --ios-red: #ff3b30;
+  --ios-orange: #ff9500;
+  --ios-card-background: #f8f9fa;
+  --ios-shadow: 0 8px 32px rgba(0,122,255,0.1);
+  --ios-shadow-sm: 0 2px 8px rgba(0,122,255,0.08);
+}
+
+/* 9. Mejorar feedback visual de acciones */
+.btn:active, .btn-ios:active {
+  box-shadow: 0 1px 2px #007aff22;
+  transform: scale(0.97);
+}
+
+/* 10. Animación para mostrar/ocultar modales */
+.modal-overlay.show {
+  animation: fadeInUp 0.4s cubic-bezier(.22,1,.36,1);
+}
+
+/* --- Mejora visual de checkbox iOS para todos los formularios --- */
+.ios-checkbox {
+  appearance: none;
+  width: 1.45em;
+  height: 1.45em;
+  border: 2px solid var(--ios-blue);
+  border-radius: 7px;
+  background: #fff;
+  vertical-align: middle;
+  margin-right: 0.7em;
+  transition: border 0.18s, background 0.18s;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 1.5px 6px rgba(0,0,0,0.03);
+  display: inline-block;
+}
+.ios-checkbox:checked {
+  border-color: var(--ios-green);
+  background: var(--ios-green);
+}
+.ios-checkbox:checked::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0.38em;
+  top: 0.18em;
+  width: 0.35em;
+  height: 0.7em;
+  border: solid #fff;
+  border-width: 0 0.18em 0.18em 0;
+  transform: rotate(45deg);
+  font-size: 1.2em;
+}
+.ios-label {
+  display: flex;
+  align-items: center;
+  font-size: 1.09em;
+  font-weight: 500;
+  color: var(--ios-text-primary);
+  margin-bottom: 0.2em;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.5em;
+}
+
+/* --- Fix padding para inputs con iconos en formularios iOS --- */
+.input-group input[type="text"],
+.input-group input[type="number"],
+.input-group select {
+  padding-left: 2.5em !important;
+}
+.ios-input-icon {
+  left: 0.9em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.15em;
+  pointer-events: none;
+  position: absolute;
+  color: var(--ios-text-secondary);
+  z-index: 2;
+}
+@media (max-width: 700px) {
+  .input-group input[type="text"],
+  .input-group input[type="number"],
+  .input-group select {
+    padding-left: 2.3em !important;
+    font-size: 1.08em;
+  }
+  .ios-input-icon {
+    font-size: 1.1em;
+    left: 0.7em;
+  }
+}
+
+/* === Barra de Objetivos Superior (Fase 2) === */
+.objetivos-bar-ios {
+  width: 100%;
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 4px 18px #007aff11;
+  border-radius: 18px;
+  margin: 0 auto 1.2em auto;
+  padding: 0.7em 1.2em 0.7em 1.2em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  align-items: stretch;
+  z-index: 100;
+  max-width: 1200px;
+}
+.objetivo-bar-item {
+  background: #f8f9fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #007aff11;
+  padding: 0.7em 1.1em;
+  min-width: 220px;
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+.objetivo-bar-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1em;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+.objetivo-bar-nombre {
+  font-weight: 700;
+  color: #007aff;
+  font-size: 1.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.objetivo-bar-meta, .objetivo-bar-dias {
+  font-size: 0.98em;
+  color: #333;
+}
+.objetivo-bar-progreso {
+  width: 100%;
+  background: #e0eaff;
+  border-radius: 8px;
+  height: 14px;
+  position: relative;
+  margin-top: 0.2em;
+  margin-bottom: 0.1em;
+}
+.objetivo-bar-progreso-bar {
+  background: linear-gradient(90deg, #34c759 0%, #30cfff 100%);
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.5s cubic-bezier(.22,1,.36,1);
+}
+.objetivo-bar-progreso-text {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95em;
+  font-weight: 600;
+  color: #007aff;
+  background: #fff;
+  padding: 0 0.5em;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #007aff11;
+}
+@media (max-width: 700px) {
+  .objetivos-bar-ios {
+    flex-direction: column;
+    gap: 0.7em;
+    padding: 0.5em 0.3em;
+    border-radius: 10px;
+  }
+  .objetivo-bar-item {
+    min-width: 0;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.7em 0.7em;
+  }
+}
+
+.objetivos-bar-fixed {
+  position: sticky;
+  top: 64px; /* Altura aproximada del navbar */
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  margin-top: 0;
+  margin-bottom: 1.2em;
+}
+@media (max-width: 700px) {
+  .objetivos-bar-fixed {
+    top: 56px;
+    border-radius: 0 0 10px 10px;
+  }
+}
+
+/* ... código existente ... */
+.objetivos-noti-container-ios {
+  position: fixed;
+  top: 80px;
+  right: 24px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.objetivos-noti-ios {
+  min-width: 260px;
+  max-width: 340px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #007aff22;
+  border: 2px solid #e0eaff;
+  margin-bottom: 1em;
+  padding: 1.1em 1.3em 1em 1.3em;
+  font-size: 1.08em;
+  color: #222;
+  pointer-events: auto;
+  opacity: 0;
+  transform: translateY(-30px) scale(0.98);
+  transition: opacity 0.3s, transform 0.3s;
+  animation: fadeInUp 0.5s cubic-bezier(.22,1,.36,1);
+}
+.objetivos-noti-container-ios.show .objetivos-noti-ios {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.objetivos-noti-ios.success {
+  border-color: #34c759;
+  box-shadow: 0 8px 32px #34c75922;
+}
+.objetivos-noti-ios.info {
+  border-color: #007aff;
+  box-shadow: 0 8px 32px #007aff22;
+}
+.noti-title {
+  font-weight: 700;
+  color: #007aff;
+  margin-bottom: 0.3em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.objetivos-noti-ios.success .noti-title {
+  color: #34c759;
+}
+.noti-msg {
+  margin-bottom: 0.4em;
+}
+.noti-reco {
+  font-size: 0.97em;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+@media (max-width: 700px) {
+  .objetivos-noti-container-ios {
+    top: 64px;
+    right: 0;
+    left: 0;
+    align-items: center;
+  }
+  .objetivos-noti-ios {
+    min-width: 0;
+    max-width: 95vw;
+    border-radius: 12px;
+    padding: 1em 0.7em 0.9em 0.7em;
+  }
+}
+/* ... código existente ... */
+
+/* ... código existente ... */
+.objetivo-sugerencia-ia {
+  background: #f6faff;
+  border: 2px solid #007aff33;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #007aff11;
+  padding: 1em 1.2em;
+  margin-bottom: 1.2em;
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  font-size: 1.08em;
+  color: #222;
+  position: relative;
+}
+.objetivo-sugerencia-ia b {
+  color: #007aff;
+  font-weight: 700;
+  margin-bottom: 0.2em;
+}
+.objetivo-sugerencia-ia span {
+  display: block;
+  margin-bottom: 0.2em;
+}
+.objetivo-sugerencia-ia .btn-autocompletar-sugerencia {
+  align-self: flex-end;
+  margin-top: 0.2em;
+  background: linear-gradient(90deg, #e0f0ff 0%, #cbe7ff 100%);
+  color: #007aff;
+  border: 1.5px solid #e0eaff;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 1.5px 6px #007aff11;
+  transition: background 0.18s, color 0.18s;
+}
+.objetivo-sugerencia-ia .btn-autocompletar-sugerencia:hover {
+  background: #007aff;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .objetivo-sugerencia-ia {
+    padding: 0.8em 0.6em;
+    font-size: 1em;
+  }
+}
+/* ... código existente ... */
