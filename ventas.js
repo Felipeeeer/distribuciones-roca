@@ -267,27 +267,49 @@ async function descargarFactura(id) {
     doc.text('distribucionesroca.contacto@gmail.com', pageWidth/2, yPosition, { align: 'center' });
     yPosition += 20;
 
-   // === CÓDIGO QR ===
-try {
-  const clienteId = fac.clienteId || 'general';
-  const qrUrl = `https://distribuciones-roca.web.app/historial-cliente/index.html?clienteId=${clienteId}`;
-  const qrSize = 60;
-  const qrX = (pageWidth - qrSize) / 2;
+    // === CÓDIGO QR ===
+    try {
+      const clienteId = fac.clienteId || 'general';
+      const baseUrl = window.location.origin;
+      const qrUrl = `${baseUrl}/index.html?clienteId=${clienteId}`;
+      const qrSize = 60;
+      const qrX = (pageWidth - qrSize) / 2;
 
-  // Generar QR real con QRCode y convertirlo a base64
-  await QRCode.toDataURL(qrUrl, { width: qrSize, margin: 1 }, function (err, url) {
-    if (err) throw err;
+      // Generar QR con configuración optimizada para impresión térmica
+      const qrDataUrl = await QRCode.toDataURL(qrUrl, {
+        width: qrSize * 4, // Mayor resolución para mejor calidad de impresión
+        margin: 1,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        },
+        errorCorrectionLevel: 'M' // Nivel medio de corrección de errores
+      });
 
-    doc.addImage(url, 'PNG', qrX, yPosition, qrSize, qrSize);
-    yPosition += qrSize + 10;
-    doc.setFontSize(7);
-    doc.text('Escanea para ver tu historial', pageWidth / 2, yPosition, { align: 'center' });
-    yPosition += 20;
-  });
-} catch (error) {
-  console.warn('No se pudo generar el código QR:', error);
-  yPosition += 10;
-}
+      // Agregar el QR al PDF
+      doc.addImage(qrDataUrl, 'PNG', qrX, yPosition, qrSize, qrSize);
+      yPosition += qrSize + 8;
+      
+      // Texto explicativo del QR
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Escanea para ver tu historial', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 8;
+      doc.text('de compras completo', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 15;
+      
+    } catch (error) {
+      console.warn('No se pudo generar el código QR:', error);
+      // Fallback: mostrar texto alternativo
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Consulta tu historial en:', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 10;
+      const fallbackUrl = `${window.location.origin}/index.html?clienteId=${fac.clienteId || 'general'}`;
+      const urlLines = doc.splitTextToSize(fallbackUrl, contentWidth);
+      doc.text(urlLines, pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += urlLines.length * 8 + 10;
+    }
 
 
     // === LÍNEA SEPARADORA ===
