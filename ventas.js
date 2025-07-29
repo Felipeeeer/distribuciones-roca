@@ -267,27 +267,49 @@ async function descargarFactura(id) {
     doc.text('distribucionesroca.contacto@gmail.com', pageWidth/2, yPosition, { align: 'center' });
     yPosition += 20;
 
-   // === CÓDIGO QR ===
-try {
-  const clienteId = fac.clienteId || 'general';
-  const qrUrl = `https://distribuciones-roca.web.app/historial-cliente/index.html?clienteId=${clienteId}`;
-  const qrSize = 60;
-  const qrX = (pageWidth - qrSize) / 2;
+    // === CÓDIGO QR ===
+         try {
+       const clienteId = fac.clienteId || 'general';
+       const baseUrl = window.location.origin;
+       const qrUrl = `${baseUrl}/pages/ventas.html?clienteId=${clienteId}`;
+      const qrSize = 60;
+      const qrX = (pageWidth - qrSize) / 2;
 
-  // Generar QR real con QRCode y convertirlo a base64
-  await QRCode.toDataURL(qrUrl, { width: qrSize, margin: 1 }, function (err, url) {
-    if (err) throw err;
+      // Generar QR con configuración optimizada para impresión térmica
+      const qrDataUrl = await QRCode.toDataURL(qrUrl, {
+        width: qrSize * 4, // Mayor resolución para mejor calidad de impresión
+        margin: 1,
+        color: {
+          dark: '#000000',
+          light: '#FFFFFF'
+        },
+        errorCorrectionLevel: 'M' // Nivel medio de corrección de errores
+      });
 
-    doc.addImage(url, 'PNG', qrX, yPosition, qrSize, qrSize);
-    yPosition += qrSize + 10;
-    doc.setFontSize(7);
-    doc.text('Escanea para ver tu historial', pageWidth / 2, yPosition, { align: 'center' });
-    yPosition += 20;
-  });
-} catch (error) {
-  console.warn('No se pudo generar el código QR:', error);
-  yPosition += 10;
-}
+      // Agregar el QR al PDF
+      doc.addImage(qrDataUrl, 'PNG', qrX, yPosition, qrSize, qrSize);
+      yPosition += qrSize + 8;
+      
+      // Texto explicativo del QR
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Escanea para ver tu historial', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 8;
+      doc.text('de compras completo', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 15;
+      
+    } catch (error) {
+      console.warn('No se pudo generar el código QR:', error);
+      // Fallback: mostrar texto alternativo
+      doc.setFontSize(7);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Consulta tu historial en:', pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += 10;
+             const fallbackUrl = `${window.location.origin}/pages/ventas.html?clienteId=${fac.clienteId || 'general'}`;
+      const urlLines = doc.splitTextToSize(fallbackUrl, contentWidth);
+      doc.text(urlLines, pageWidth / 2, yPosition, { align: 'center' });
+      yPosition += urlLines.length * 8 + 10;
+    }
 
 
     // === LÍNEA SEPARADORA ===
@@ -3549,3 +3571,351 @@ document.getElementById('btnExportarSheets')?.addEventListener('click', function
   showSuccess('CSV generado correctamente. Puedes importarlo en Google Sheets.');
 });
 // ... existing code ...
+
+// === FUNCIONES PARA HISTORIAL DE COMPRAS DEL CLIENTE (QR CODE) ===
+
+// Verificar si se está accediendo al historial desde QR
+function verificarAccesoHistorialQR() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const clienteId = urlParams.get('clienteId');
+  
+  if (clienteId) {
+    mostrarHistorialCliente(clienteId);
+  }
+}
+
+// Mostrar historial completo del cliente
+async function mostrarHistorialCliente(clienteId) {
+  try {
+    // Crear modal para mostrar historial
+    const modalHistorial = document.createElement('div');
+    modalHistorial.className = 'modal fade';
+    modalHistorial.id = 'modalHistorialCliente';
+    modalHistorial.innerHTML = `
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-clock-history"></i>
+              Historial de Compras
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="historialClienteContent">
+              <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando historial de compras...</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.body.appendChild(modalHistorial);
+    
+    // Mostrar modal
+    const modal = new bootstrap.Modal(modalHistorial);
+    modal.show();
+    
+    // Cargar datos del cliente y sus facturas
+    const [clienteInfo, facturas] = await Promise.all([
+      obtenerInfoClienteHistorial(clienteId),
+      obtenerFacturasClienteHistorial(clienteId)
+    ]);
+    
+    // Renderizar contenido del historial
+    renderizarHistorialCliente(clienteInfo, facturas, clienteId);
+    
+    // Limpiar modal al cerrar
+    modalHistorial.addEventListener('hidden.bs.modal', () => {
+      document.body.removeChild(modalHistorial);
+      // Limpiar URL si se accedió por QR
+      if (window.location.search.includes('clienteId')) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error al mostrar historial del cliente:', error);
+    showError('Error al cargar el historial del cliente');
+  }
+}
+
+// Obtener información del cliente para historial
+async function obtenerInfoClienteHistorial(clienteId) {
+  try {
+    const clienteSnap = await get(ref(db, `clientes/${clienteId}`));
+    
+    if (clienteSnap.exists()) {
+      return {
+        id: clienteId,
+        ...clienteSnap.val()
+      };
+    } else {
+      // Si no existe en clientes, buscar en facturas
+      const facturas = facturasCache.filter(f => f.clienteId === clienteId);
+      if (facturas.length > 0) {
+        const primeraFactura = facturas[0];
+        return {
+          id: clienteId,
+          nombre: primeraFactura.cliente || 'Cliente General',
+          telefono: primeraFactura.clienteTelefono || 'N/A',
+          direccion: primeraFactura.clienteDireccion || 'N/A'
+        };
+      }
+      
+      return {
+        id: clienteId,
+        nombre: 'Cliente General',
+        telefono: 'N/A',
+        direccion: 'N/A'
+      };
+    }
+  } catch (error) {
+    console.error('Error al obtener info del cliente:', error);
+    return {
+      id: clienteId,
+      nombre: 'Cliente General',
+      telefono: 'N/A',
+      direccion: 'N/A'
+    };
+  }
+}
+
+// Obtener facturas del cliente para historial
+async function obtenerFacturasClienteHistorial(clienteId) {
+  try {
+    // Filtrar facturas del cliente desde el cache
+    const facturas = facturasCache
+      .filter(f => f.clienteId === clienteId)
+      .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    
+    // Si no hay facturas en cache, buscar en Firebase
+    if (facturas.length === 0) {
+      const facturasSnap = await get(ref(db, 'facturas'));
+      if (facturasSnap.exists()) {
+        const todasFacturas = Object.entries(facturasSnap.val()).map(([id, data]) => ({
+          id,
+          ...data
+        }));
+        
+        return todasFacturas
+          .filter(f => f.clienteId === clienteId)
+          .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+      }
+    }
+    
+    return facturas;
+  } catch (error) {
+    console.error('Error al obtener facturas del cliente:', error);
+    return [];
+  }
+}
+
+// Renderizar historial del cliente
+function renderizarHistorialCliente(clienteInfo, facturas, clienteId) {
+  const container = document.getElementById('historialClienteContent');
+  
+  if (facturas.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-4">
+        <i class="bi bi-inbox display-1 text-muted"></i>
+        <h4 class="mt-3 text-muted">Sin historial de compras</h4>
+        <p class="text-muted">Este cliente aún no tiene compras registradas.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  // Calcular estadísticas
+  const totalFacturas = facturas.length;
+  const totalGastado = facturas.reduce((sum, f) => sum + (f.total || 0), 0);
+  const promedioCompra = totalGastado / totalFacturas;
+  const ultimaCompra = facturas[0]?.fecha;
+  
+  container.innerHTML = `
+    <!-- Información del Cliente -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <h5 class="card-title mb-1">
+              <i class="bi bi-person-circle text-primary"></i>
+              ${clienteInfo.nombre}
+            </h5>
+            <p class="text-muted mb-1">ID: ${clienteInfo.id}</p>
+            ${clienteInfo.telefono !== 'N/A' ? `<p class="text-muted mb-1"><i class="bi bi-telephone"></i> ${clienteInfo.telefono}</p>` : ''}
+            ${clienteInfo.direccion !== 'N/A' ? `<p class="text-muted mb-0"><i class="bi bi-geo-alt"></i> ${clienteInfo.direccion}</p>` : ''}
+          </div>
+          <div class="col-md-4 text-end">
+            <div class="badge bg-primary fs-6 px-3 py-2">
+              ${totalFacturas} Compra${totalFacturas !== 1 ? 's' : ''}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Estadísticas -->
+    <div class="row mb-4">
+      <div class="col-md-3 col-6 mb-3">
+        <div class="card bg-light">
+          <div class="card-body text-center">
+            <h6 class="card-title text-muted mb-1">Total Gastado</h6>
+            <h4 class="text-success mb-0">${formatCurrency(totalGastado)}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-3">
+        <div class="card bg-light">
+          <div class="card-body text-center">
+            <h6 class="card-title text-muted mb-1">Promedio</h6>
+            <h4 class="text-info mb-0">${formatCurrency(promedioCompra)}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-3">
+        <div class="card bg-light">
+          <div class="card-body text-center">
+            <h6 class="card-title text-muted mb-1">Facturas</h6>
+            <h4 class="text-primary mb-0">${totalFacturas}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6 mb-3">
+        <div class="card bg-light">
+          <div class="card-body text-center">
+            <h6 class="card-title text-muted mb-1">Última Compra</h6>
+            <small class="text-muted">${ultimaCompra ? formatDate(ultimaCompra) : 'N/A'}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Lista de Facturas -->
+    <div class="card">
+      <div class="card-header">
+        <h6 class="mb-0">
+          <i class="bi bi-receipt"></i>
+          Historial de Facturas
+        </h6>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Factura</th>
+                <th>Fecha</th>
+                <th>Productos</th>
+                <th>Total</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${facturas.map(factura => `
+                <tr>
+                  <td>
+                    <strong>#${factura.id?.slice(-8) || 'N/A'}</strong>
+                  </td>
+                  <td>
+                    <small>${formatDateTime(factura.fecha)}</small>
+                  </td>
+                  <td>
+                    <small>${(factura.productos || []).length} item${(factura.productos || []).length !== 1 ? 's' : ''}</small>
+                  </td>
+                  <td>
+                    <strong class="text-success">${formatCurrency(factura.total || 0)}</strong>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-primary" onclick="previewFactura('${factura.id}')">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-success" onclick="descargarFactura('${factura.id}')">
+                      <i class="bi bi-download"></i>
+                    </button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Productos más comprados -->
+    ${renderProductosMasComprados(facturas)}
+  `;
+}
+
+// Renderizar productos más comprados
+function renderProductosMasComprados(facturas) {
+  const productosCount = {};
+  
+  facturas.forEach(factura => {
+    if (factura.productos) {
+      factura.productos.forEach(producto => {
+        const nombre = producto.producto || producto.nombre || 'Producto';
+        const cantidad = producto.cantidad || 1;
+        
+        if (productosCount[nombre]) {
+          productosCount[nombre] += cantidad;
+        } else {
+          productosCount[nombre] = cantidad;
+        }
+      });
+    }
+  });
+  
+  const productosOrdenados = Object.entries(productosCount)
+    .sort(([,a], [,b]) => b - a)
+    .slice(0, 5);
+  
+  if (productosOrdenados.length === 0) {
+    return '';
+  }
+  
+  return `
+    <div class="card mt-4">
+      <div class="card-header">
+        <h6 class="mb-0">
+          <i class="bi bi-star"></i>
+          Productos Más Comprados
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          ${productosOrdenados.map(([producto, cantidad], index) => `
+            <div class="col-md-6 col-12 mb-2">
+              <div class="d-flex align-items-center">
+                <span class="badge bg-secondary me-2">${index + 1}</span>
+                <div class="flex-grow-1">
+                  <small class="fw-bold">${producto}</small>
+                  <br>
+                  <small class="text-muted">${cantidad} unidad${cantidad !== 1 ? 'es' : ''}</small>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Inicializar verificación de QR al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  // Verificar si se accede por QR después de que se carguen los datos
+  setTimeout(() => {
+    verificarAccesoHistorialQR();
+  }, 1000);
+});
+
+// === FIN FUNCIONES HISTORIAL QR ===
